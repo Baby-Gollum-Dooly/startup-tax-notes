@@ -14,16 +14,6 @@
 - 학습 기록은 브라우저 localStorage에 저장
 - 375px 폭 휴대폰 화면 대응
 
-## 실행
-
-Node 18 이상. 외부 패키지 없음.
-
-```bash
-npm run build   # dist/에 정적 페이지 생성
-npm start       # http://localhost:3000 미리보기
-npm run dev     # 빌드 후 바로 미리보기
-```
-
 ## 주소
 
 | 주소 | 페이지 |
@@ -75,7 +65,9 @@ vercel.json              빌드 명령, 출력 폴더, 확장자 없는 주소 �
 
 ## 배포
 
-main 브랜치에 머지되면 Vercel이 `npm run build` 후 `dist/`를 배포.
+- 빌드와 배포는 Vercel에서 처리. 외부 패키지 없음
+- 작업 브랜치로 PR을 올리면 Vercel 미리보기 주소가 생성됨. 반영 전 확인은 이 주소로
+- main에 머지되면 Vercel이 `npm run build` 후 `dist/`를 실제 사이트에 배포
 
 ## 주의
 
