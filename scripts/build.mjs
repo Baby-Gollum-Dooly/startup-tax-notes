@@ -58,7 +58,8 @@ function validate(site) {
     for (const m of c.body.matchAll(/href="\/chapters\/([a-z]+)"/g)) {
       if (!ids.has(m[1])) errors.push(`${c.id}: 없는 챕터 링크 ${m[1]}`);
     }
-    if (c.body.includes('·') || c.title.includes('·')) errors.push(`${c.id}: 가운뎃점 사용`);
+    const MIDDLE_DOT = String.fromCharCode(0xb7);
+    if (c.body.includes(MIDDLE_DOT) || c.title.includes(MIDDLE_DOT)) errors.push(`${c.id}: 가운뎃점 사용`);
   });
   site.glossary.forEach((g) => { if (!ids.has(g.chapter)) errors.push(`용어 ${g.term}: 없는 챕터 ${g.chapter}`); });
   DEADLINES.forEach((d) => { if (!ids.has(d.chapter)) errors.push(`일정 ${d.title}: 없는 챕터 ${d.chapter}`); });
