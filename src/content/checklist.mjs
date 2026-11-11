@@ -16,7 +16,7 @@ export default [
       {
         "text": "공동창업자 지분 비율과 1주 금액 결정",
         "note": "나중에 투자 받을 것을 고려해 1주 금액은 작게",
-        "chapter": "equity"
+        "chapter": "shares"
       },
       {
         "text": "정관에 주식매수선택권, 임원 보수 조항 포함",
@@ -25,7 +25,7 @@ export default [
       },
       {
         "text": "자본금 규모 결정",
-        "note": "6개월 ~ 1년 운영비 수준",
+        "note": "초기 운영비를 대표 개인 돈으로 메우면 가수금이 쌓임",
         "chapter": "setup"
       },
       {
@@ -85,7 +85,7 @@ export default [
       },
       {
         "text": "4대보험 사업장 성립신고와 취득신고",
-        "note": "채용한 달의 다음달 15일까지",
+        "note": "고용, 산재보험 성립신고는 고용한 날부터 14일 이내. 4대사회보험 정보연계센터에서 한 번에 신고 가능",
         "chapter": "payroll"
       },
       {
@@ -106,6 +106,61 @@ export default [
     ]
   },
   {
+    "group": "대출 신청 전",
+    "items": [
+      {
+        "text": "국세, 지방세, 4대보험료 체납 정리",
+        "note": "체납이 있으면 정책자금 융자 제외",
+        "chapter": "loanmanage"
+      },
+      {
+        "text": "최근 결산 재무제표와 부가세 신고서 준비",
+        "note": "",
+        "chapter": "loanmanage"
+      },
+      {
+        "text": "청년 창업 보증 상품 대상인지 확인",
+        "note": "신보, 기보, 지역신보별 나이와 업력 기준이 다름",
+        "chapter": "guarantee"
+      },
+      {
+        "text": "투자계약서에 차입 사전 동의 조항이 있는지 확인",
+        "note": "",
+        "chapter": "loantypes"
+      },
+      {
+        "text": "거치기간이 끝나는 날을 달력에 적기",
+        "note": "이후 원금 상환이 시작됨",
+        "chapter": "loanmanage"
+      }
+    ]
+  },
+  {
+    "group": "지분 정리",
+    "items": [
+      {
+        "text": "정관의 주식 양도 제한 조항 확인",
+        "note": "",
+        "chapter": "shares"
+      },
+      {
+        "text": "공동창업자 퇴사 시 주식 처리 방법 약정",
+        "note": "",
+        "chapter": "shares"
+      },
+      {
+        "text": "스톡옵션 부여 전 정관 근거와 부여 대상 확인",
+        "note": "10% 이상 주주 등은 상법상 대상이 아님",
+        "chapter": "stockoption"
+      },
+      {
+        "text": "특수관계인에게 신주를 배정할 때 시가 확인",
+        "note": "저가 발행은 증여세 문제",
+        "chapter": "valuation"
+      }
+    ]
+  },
+  {
     "group": "첫해 운영",
     "items": [
       {
@@ -121,7 +176,7 @@ export default [
       {
         "text": "벤처기업 확인 검토",
         "note": "창업 3년 내 확인 시 감면 혜택",
-        "chapter": "incentive"
+        "chapter": "postinvest"
       },
       {
         "text": "법인 차량이 있다면 임직원 전용 보험과 운행기록부",
@@ -160,8 +215,8 @@ export default [
       },
       {
         "text": "명의신탁 주식 실명 전환",
-        "note": "",
-        "chapter": "invest"
+        "note": "증여세는 실제 소유자가 냄",
+        "chapter": "sharetax"
       },
       {
         "text": "대표 개인 명의 특허, 상표를 회사로 이전",
@@ -204,8 +259,8 @@ export default [
         "chapter": "overseas"
       },
       {
-        "text": "법인세 신고 때 해외현지법인 명세서 제출",
-        "note": "",
+        "text": "해외현지법인 명세서 제출",
+        "note": "사업연도 종료일이 속한 달 말일부터 6개월 이내",
         "chapter": "overseas"
       }
     ]

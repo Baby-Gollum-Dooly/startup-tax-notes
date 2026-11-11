@@ -37,6 +37,8 @@ export function buildDeadlines(year, opts) {
     const months = item.month === 0 ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] : [item.month];
     months.forEach((m) => {
       const day = item.day === 'end' ? new Date(year, m, 0).getDate() : item.day;
+      const ym = year + '-' + pad(m);
+      if ((item.from && ym < item.from) || (item.until && ym > item.until)) return;
       const base = new Date(year, m - 1, day);
       const due = nextBusinessDay(base);
       out.push({ date: due, base, shifted: due.getTime() !== base.getTime(), item });
