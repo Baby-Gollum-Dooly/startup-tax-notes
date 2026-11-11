@@ -1,12 +1,13 @@
 /* 계산기 공식. 요율과 세율은 개정되면 여기만 수정 */
 
-/* 2026년 4대보험 요율. 국민연금 상하한은 2025.7 ~ 2026.6 기준 */
+/* 2026년 4대보험 요율. 국민연금 상하한은 2026.7 ~ 2027.6 기준 (국민연금공단)
+   장기요양은 소득 대비 0.9448%, 건강보험료에 0.9448 / 7.19를 곱해 계산 (국민건강보험공단) */
 export const INSURANCE_2026 = {
   pension: 0.095,
-  pensionMin: 400000,
-  pensionMax: 6370000,
+  pensionMin: 410000,
+  pensionMax: 6590000,
   health: 0.0719,
-  ltc: 0.1314,
+  ltc: 0.009448,
   empWorker: 0.009,
   empCompany: 0.009,
   empStable: 0.0025
@@ -27,7 +28,7 @@ export function insurance(pay, isCeo, sanjaePercent) {
   const base = Math.min(Math.max(Math.floor(pay / 1000) * 1000, r.pensionMin), r.pensionMax);
   const pension = floor10(base * r.pension / 2);
   const health = floor10(pay * r.health / 2);
-  const ltc = floor10(pay * r.health * r.ltc / 2);
+  const ltc = floor10(health * r.ltc / r.health);
   const empW = isCeo ? 0 : floor10(pay * r.empWorker);
   const empC = isCeo ? 0 : floor10(pay * (r.empCompany + r.empStable));
   const sanjae = isCeo ? 0 : floor10(pay * (sanjaePercent || 0) / 100);

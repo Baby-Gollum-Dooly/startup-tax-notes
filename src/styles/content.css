@@ -67,6 +67,12 @@ table.journal td:first-child { color: var(--ink-3); white-space: nowrap; }
 .steps > li > b { display: block; }
 
 .sources { margin-top: 40px; font-size: 14px; color: var(--ink-2); }
+.sources ol { padding-left: 22px; }
+.sources li { margin-bottom: 6px; overflow-wrap: anywhere; scroll-margin-top: 72px; }
+.sources li:target { background: var(--mark); }
+sup.ref { font-size: 11px; line-height: 0; margin-left: 1px; }
+sup.ref a { text-decoration: none; padding: 0 2px; }
+sup.ref a:hover { text-decoration: underline; }
 .sources h2 { font-size: 15px; }
 
 /* 챕터 하단 */

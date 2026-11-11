@@ -48,7 +48,7 @@ function updInsurance() {
     table('<th>항목</th><th class="r">근로자 부담</th><th class="r">회사 부담</th><th>비고</th>', rows,
       `<tr class="total"><td>합계</td><td class="r">${won(r.worker)}</td><td class="r">${won(r.company)}</td><td></td></tr>`) +
     `<p>회사가 매달 쓰는 인건비는 월 보수 ${won(pay)}원에 회사 부담 ${won(r.company)}원을 더한 <strong>${won(pay + r.company)}원</strong>입니다. 근로자가 받는 금액은 여기서 근로자 부담분과 소득세, 지방소득세를 뺀 금액입니다.</p>` +
-    '<p class="muted">국민연금 기준소득월액 상한 637만원, 하한 40만원은 2025년 7월부터 2026년 6월까지 적용 기준입니다.</p>';
+    '<p class="muted">국민연금 기준소득월액 하한 41만원, 상한 659만원은 2026년 7월부터 2027년 6월까지 적용 기준입니다. 고용안정 0.25%는 150인 미만 기업 기준입니다.</p>';
 }
 
 /* 법인세 */

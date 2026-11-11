@@ -4,6 +4,7 @@ export default {
   title: "세무사에게 맡길 일과 대표가 할 일",
   summary: "기장을 맡겨도 증빙과 의사결정은 대표 몫입니다.",
   minutes: 6,
+  checked: "2026-11-11",
   sources: [
     {
       "title": "한국세무사회",
