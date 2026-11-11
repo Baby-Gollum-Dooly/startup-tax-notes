@@ -1,675 +1,204 @@
-/* 용어사전. chapter는 관련 챕터 id */
+/*
+ * 용어사전
+ * term: 표제어, alias: 다른 이름(본문에서 이 이름도 찾아 밑줄), category: 분류,
+ * text: 설명, chapter: 자세히 다루는 챕터 id, source: 근거 [제목, 주소]
+ * 본문 단어 설명 창도 이 데이터를 쓴다.
+ */
+const L = (name, jo) => `https://www.law.go.kr/법령/${name}/${jo}`;
+
 export default [
-  {
-    "term": "가산세",
-    "alias": "",
-    "category": "세금 일반",
-    "text": "신고나 납부, 증빙 의무를 지키지 않았을 때 본래 세금에 더해 내는 세금. 무신고, 과소신고, 납부지연, 증빙불비 가산세 등이 있다.",
-    "chapter": "evidence"
-  },
-  {
-    "term": "가수금",
-    "alias": "",
-    "category": "회계",
-    "text": "회사에 들어온 돈 중 출처가 정리되지 않은 것. 대부분 대표가 회사에 넣은 돈이며 회사 입장에서는 부채다.",
-    "chapter": "basics"
-  },
-  {
-    "term": "가지급금",
-    "alias": "",
-    "category": "회계",
-    "text": "회사에서 나간 돈 중 용도가 확인되지 않은 것. 대표 대여금으로 정리되는 경우가 많고 인정이자 등 세금 불이익이 있다.",
-    "chapter": "mistakes"
-  },
-  {
-    "term": "간이과세자",
-    "alias": "",
-    "category": "부가세",
-    "text": "연 매출 1억 400만원 미만 개인사업자가 선택할 수 있는 부가세 과세 유형. 법인은 해당하지 않는다.",
-    "chapter": "entity"
-  },
-  {
-    "term": "간이지급명세서",
-    "alias": "",
-    "category": "원천세",
-    "text": "원천징수한 소득의 지급 내역을 국세청에 짧은 주기로 제출하는 서류. 사업소득은 매월 제출한다.",
-    "chapter": "payroll"
-  },
-  {
-    "term": "감가상각",
-    "alias": "",
-    "category": "회계",
-    "text": "여러 해 사용하는 자산의 취득 원가를 사용 기간에 나누어 비용으로 처리하는 것.",
-    "chapter": "basics"
-  },
-  {
-    "term": "결손금",
-    "alias": "적자",
-    "category": "법인세",
-    "text": "세법상 손금이 익금보다 많아 생긴 마이너스 소득. 이후 15년간 소득에서 공제할 수 있다.",
-    "chapter": "cit"
-  },
-  {
-    "term": "경정청구",
-    "alias": "",
-    "category": "세금 일반",
-    "text": "이미 신고한 세금이 과다했을 때 바로잡아 돌려받도록 요청하는 절차. 법정 신고기한부터 5년 안에 할 수 있다.",
-    "chapter": "incentive"
-  },
-  {
-    "term": "계산서",
-    "alias": "",
-    "category": "증빙",
-    "text": "면세 재화나 용역을 공급할 때 발급하는 증빙. 부가세가 없다.",
-    "chapter": "evidence"
-  },
-  {
-    "term": "공급가액",
-    "alias": "",
-    "category": "부가세",
-    "text": "부가세를 뺀 거래 금액. 공급가액의 10%가 부가세다.",
-    "chapter": "vat"
-  },
-  {
-    "term": "공급시기",
-    "alias": "",
-    "category": "부가세",
-    "text": "세금계산서 작성일자의 기준이 되는 날. 재화를 인도하거나 용역 제공을 완료한 때.",
-    "chapter": "evidence"
-  },
-  {
-    "term": "과밀억제권역",
-    "alias": "수도권 과밀억제권역",
-    "category": "설립",
-    "text": "수도권정비계획법상 인구와 산업이 과도하게 집중된 지역. 서울 전역과 인천, 경기 일부. 등록면허세 중과, 창업 감면율에 영향을 준다.",
-    "chapter": "setup"
-  },
-  {
-    "term": "과세표준",
-    "alias": "과표",
-    "category": "세금 일반",
-    "text": "세율을 곱하는 기준 금액. 법인세는 각 사업연도 소득에서 이월결손금 등을 뺀 금액이다.",
-    "chapter": "cit"
-  },
-  {
-    "term": "과점주주",
-    "alias": "",
-    "category": "지분",
-    "text": "본인과 특수관계인의 지분 합계가 50%를 넘는 주주. 설립 후 과점주주가 되면 간주취득세가 나올 수 있다.",
-    "chapter": "equity"
-  },
-  {
-    "term": "기업업무추진비",
-    "alias": "접대비",
-    "category": "법인세",
-    "text": "거래처를 위해 쓴 식대, 선물, 경조사비 등. 2024년부터 접대비에서 이름이 바뀌었고 연간 한도가 있다.",
-    "chapter": "mistakes"
-  },
-  {
-    "term": "기장",
-    "alias": "기장대리",
-    "category": "회계",
-    "text": "거래를 장부에 기록하는 일. 대부분의 스타트업은 세무사 사무실에 맡긴다.",
-    "chapter": "advisor"
-  },
-  {
-    "term": "당기순이익",
-    "alias": "",
-    "category": "회계",
-    "text": "손익계산서상 한 해 동안의 최종 이익. 법인세 계산의 출발점이다.",
-    "chapter": "cit"
-  },
-  {
-    "term": "등록면허세",
-    "alias": "",
-    "category": "설립",
-    "text": "법인 설립, 증자 등 등기를 할 때 내는 지방세. 자본금의 0.4%가 기본이다.",
-    "chapter": "setup"
-  },
-  {
-    "term": "매입세액",
-    "alias": "",
-    "category": "부가세",
-    "text": "사업자가 물건이나 용역을 살 때 부담한 부가세. 요건을 갖추면 매출세액에서 공제한다.",
-    "chapter": "vat"
-  },
-  {
-    "term": "매출세액",
-    "alias": "",
-    "category": "부가세",
-    "text": "사업자가 판매하면서 고객에게 받은 부가세.",
-    "chapter": "vat"
-  },
-  {
-    "term": "발생주의",
-    "alias": "",
-    "category": "회계",
-    "text": "현금이 오간 시점이 아니라 거래가 발생한 시점에 수익과 비용을 인식하는 회계 원칙.",
-    "chapter": "basics"
-  },
-  {
-    "term": "복리후생비",
-    "alias": "",
-    "category": "회계",
-    "text": "임직원을 위해 쓴 식대, 회식비, 경조사비 등. 기업업무추진비와 달리 한도가 없다.",
-    "chapter": "mistakes"
-  },
-  {
-    "term": "복식부기",
-    "alias": "",
-    "category": "회계",
-    "text": "하나의 거래를 차변과 대변 두 곳에 같은 금액으로 기록하는 장부 작성 방식.",
-    "chapter": "basics"
-  },
-  {
-    "term": "상여처분",
-    "alias": "인정상여",
-    "category": "법인세",
-    "text": "회사 밖으로 나간 소득이 대표 등에게 귀속되었다고 보고 그 사람의 근로소득으로 처리하는 것.",
-    "chapter": "mistakes"
-  },
-  {
-    "term": "세무조정",
-    "alias": "",
-    "category": "법인세",
-    "text": "회계상 이익을 세법상 소득으로 바꾸기 위해 차이를 더하고 빼는 과정.",
-    "chapter": "cit"
-  },
-  {
-    "term": "세액감면",
-    "alias": "",
-    "category": "법인세",
-    "text": "산출된 세액의 일정 비율을 깎아 주는 것. 창업중소기업 세액감면이 대표적이다.",
-    "chapter": "incentive"
-  },
-  {
-    "term": "세액공제",
-    "alias": "",
-    "category": "법인세",
-    "text": "특정 지출이나 고용 증가에 대해 일정 금액을 세액에서 빼 주는 것. 연구개발비, 통합고용 세액공제 등.",
-    "chapter": "incentive"
-  },
-  {
-    "term": "손금",
-    "alias": "",
-    "category": "법인세",
-    "text": "세법상 인정되는 비용. 회계상 비용이라도 손금으로 인정되지 않는 경우가 있다.",
-    "chapter": "cit"
-  },
-  {
-    "term": "손금불산입",
-    "alias": "",
-    "category": "법인세",
-    "text": "회계상 비용으로 처리했지만 세법상 비용으로 인정하지 않아 소득에 다시 더하는 것.",
-    "chapter": "cit"
-  },
-  {
-    "term": "수정세금계산서",
-    "alias": "",
-    "category": "증빙",
-    "text": "이미 발급한 세금계산서에 오류가 있거나 계약이 바뀌었을 때 발급하는 세금계산서.",
-    "chapter": "evidence"
-  },
-  {
-    "term": "영세율",
-    "alias": "",
-    "category": "부가세",
-    "text": "0%의 부가세율. 수출 등에 적용되며 매입세액은 환급받을 수 있다. 면세와 다르다.",
-    "chapter": "vat"
-  },
-  {
-    "term": "예정고지",
-    "alias": "",
-    "category": "부가세",
-    "text": "소규모 사업자에게 국세청이 직전 기간 납부세액의 절반을 고지하는 것. 예정신고를 대신한다.",
-    "chapter": "vat"
-  },
-  {
-    "term": "원천징수",
-    "alias": "",
-    "category": "원천세",
-    "text": "소득을 지급하는 쪽이 받는 사람의 세금을 미리 떼어 대신 내는 제도.",
-    "chapter": "payroll"
-  },
-  {
-    "term": "이월결손금",
-    "alias": "",
-    "category": "법인세",
-    "text": "과거 사업연도에 발생해 아직 공제하지 못한 결손금.",
-    "chapter": "cit"
-  },
-  {
-    "term": "익금",
-    "alias": "",
-    "category": "법인세",
-    "text": "세법상 인정되는 수익.",
-    "chapter": "cit"
-  },
-  {
-    "term": "인정이자",
-    "alias": "",
-    "category": "법인세",
-    "text": "대표 등 특수관계인에게 빌려준 돈에 대해 이자를 받지 않았어도 받은 것으로 보는 이자. 가중평균차입이자율 또는 당좌대출이자율 4.6%를 쓴다.",
-    "chapter": "mistakes"
-  },
-  {
-    "term": "적격증빙",
-    "alias": "정규증빙",
-    "category": "증빙",
-    "text": "세법이 인정하는 지출 증빙. 세금계산서, 계산서, 신용카드 매출전표, 현금영수증.",
-    "chapter": "evidence"
-  },
-  {
-    "term": "주식매수선택권",
-    "alias": "스톡옵션",
-    "category": "지분",
-    "text": "임직원이 미리 정한 가격으로 회사 주식을 살 수 있는 권리.",
-    "chapter": "equity"
-  },
-  {
-    "term": "주식발행초과금",
-    "alias": "",
-    "category": "회계",
-    "text": "주식을 액면가보다 높게 발행했을 때 액면가를 넘는 부분. 자본잉여금으로 분류된다.",
-    "chapter": "equity"
-  },
-  {
-    "term": "중간예납",
-    "alias": "",
-    "category": "법인세",
-    "text": "사업연도 상반기분 법인세를 미리 내는 것. 12월 결산 법인은 8월 31일까지.",
-    "chapter": "cit"
-  },
-  {
-    "term": "지급명세서",
-    "alias": "",
-    "category": "원천세",
-    "text": "1년간 지급한 소득과 원천징수 내역을 국세청에 제출하는 서류.",
-    "chapter": "payroll"
-  },
-  {
-    "term": "최저한세",
-    "alias": "",
-    "category": "법인세",
-    "text": "감면과 공제를 받아도 최소한 내야 하는 세금. 중소기업은 과세표준의 7%.",
-    "chapter": "cit"
-  },
-  {
-    "term": "통합고용세액공제",
-    "alias": "",
-    "category": "법인세",
-    "text": "상시근로자 수가 늘면 증가 인원에 따라 세액을 공제하는 제도. 2023년부터 기존 고용 관련 공제를 통합했다.",
-    "chapter": "incentive"
-  },
-  {
-    "term": "현금영수증",
-    "alias": "",
-    "category": "증빙",
-    "text": "현금이나 계좌이체로 결제할 때 받는 적격증빙. 사업자는 지출증빙용으로 받아야 한다.",
-    "chapter": "evidence"
-  },
-  {
-    "term": "4대보험",
-    "alias": "사회보험",
-    "category": "급여",
-    "text": "국민연금, 건강보험(장기요양 포함), 고용보험, 산재보험.",
-    "chapter": "payroll"
-  },
-  {
-    "term": "농어촌특별세",
-    "alias": "농특세",
-    "category": "세금 일반",
-    "text": "조세 감면을 받은 세액의 20% 등을 내는 국세. 창업중소기업 감면처럼 비과세인 감면도 있다.",
-    "chapter": "taxmap"
-  },
-  {
-    "term": "인지세",
-    "alias": "",
-    "category": "세금 일반",
-    "text": "계약서 등 일정한 문서를 작성할 때 기재 금액에 따라 정액으로 내는 국세. 전자수입인지로 낸다.",
-    "chapter": "taxmap"
-  },
-  {
-    "term": "주민세 사업소분",
-    "alias": "",
-    "category": "세금 일반",
-    "text": "7월 1일 현재 사업소를 둔 사업자가 8월에 신고납부하는 지방세. 기본세율에 연면적분이 더해진다.",
-    "chapter": "taxmap"
-  },
-  {
-    "term": "주민세 종업원분",
-    "alias": "",
-    "category": "세금 일반",
-    "text": "월평균 급여총액이 1억 8천만원을 넘는 사업소가 급여총액의 0.5%를 매월 내는 지방세.",
-    "chapter": "taxmap"
-  },
-  {
-    "term": "비과세 근로소득",
-    "alias": "",
-    "category": "급여",
-    "text": "근로소득이지만 소득세를 매기지 않는 항목. 식대, 자가운전보조금, 출산보육수당 등 월 20만원 한도 항목이 많다.",
-    "chapter": "savings"
-  },
-  {
-    "term": "중소기업 취업자 소득세 감면",
-    "alias": "",
-    "category": "급여",
-    "text": "중소기업에 취업한 청년 등이 근로소득세를 일정 기간 감면받는 제도. 청년은 5년간 90%, 연 200만원 한도.",
-    "chapter": "youth"
-  },
-  {
-    "term": "일시상각충당금",
-    "alias": "",
-    "category": "법인세",
-    "text": "국고보조금으로 사업용 자산을 샀을 때 보조금에 대한 세금을 감가상각 기간에 나눠 내도록 미루는 세무조정.",
-    "chapter": "youth"
-  },
-  {
-    "term": "결손금 소급공제",
-    "alias": "",
-    "category": "법인세",
-    "text": "중소기업이 올해 결손금으로 직전 사업연도에 낸 법인세를 돌려받는 제도.",
-    "chapter": "savings"
-  },
-  {
-    "term": "부과제척기간",
-    "alias": "",
-    "category": "세금 일반",
-    "text": "세무서가 세금을 부과할 수 있는 기간. 일반적으로 5년, 부정행위는 10년.",
-    "chapter": "savings"
-  },
-  {
-    "term": "소득월액보험료",
-    "alias": "",
-    "category": "급여",
-    "text": "직장가입자의 보수 외 소득이 연 2,000만원을 넘을 때 추가로 내는 건강보험료.",
-    "chapter": "savings"
-  },
-  {
-    "term": "프리머니",
-    "alias": "투자 전 기업가치",
-    "category": "투자",
-    "text": "투자금이 들어오기 직전의 기업가치. 주당 발행가 계산의 기준.",
-    "chapter": "dilution"
-  },
-  {
-    "term": "포스트머니",
-    "alias": "투자 후 기업가치",
-    "category": "투자",
-    "text": "프리머니에 투자금을 더한 기업가치. 투자자 지분율은 투자금을 포스트머니로 나눈 값.",
-    "chapter": "dilution"
-  },
-  {
-    "term": "희석",
-    "alias": "",
-    "category": "투자",
-    "text": "신주 발행으로 기존 주주의 지분율이 줄어드는 것.",
-    "chapter": "dilution"
-  },
-  {
-    "term": "캡테이블",
-    "alias": "지분표",
-    "category": "투자",
-    "text": "주주별 주식 수, 종류, 취득가, 스톡옵션을 정리한 표.",
-    "chapter": "dilution"
-  },
-  {
-    "term": "상환전환우선주",
-    "alias": "RCPS",
-    "category": "투자",
-    "text": "우선배당, 잔여재산 우선분배, 보통주 전환권, 상환청구권이 붙은 종류주식. 국내 VC 투자의 기본형.",
-    "chapter": "invest"
-  },
-  {
-    "term": "전환우선주",
-    "alias": "CPS",
-    "category": "투자",
-    "text": "상환권 없이 보통주 전환권과 우선권이 있는 종류주식.",
-    "chapter": "invest"
-  },
-  {
-    "term": "전환사채",
-    "alias": "CB",
-    "category": "투자",
-    "text": "일정 조건에서 주식으로 바꿀 수 있는 회사채. 전환 전까지는 부채.",
-    "chapter": "invest"
-  },
-  {
-    "term": "조건부지분인수계약",
-    "alias": "SAFE",
-    "category": "투자",
-    "text": "지금 투자금을 넣고 다음 투자 때 정해지는 조건으로 지분을 받는 계약.",
-    "chapter": "invest"
-  },
-  {
-    "term": "텀싯",
-    "alias": "투자조건 요약서",
-    "category": "투자",
-    "text": "본계약 전에 기업가치, 투자금액, 주요 권리를 정리한 문서. 보통 법적 구속력이 없다.",
-    "chapter": "invest"
-  },
-  {
-    "term": "리픽싱",
-    "alias": "전환가격 조정",
-    "category": "투자",
-    "text": "후속 투자가 더 낮은 가격에 이뤄지면 기존 우선주의 전환가격을 낮추는 조항.",
-    "chapter": "term"
-  },
-  {
-    "term": "공동매도권",
-    "alias": "태그얼롱",
-    "category": "투자",
-    "text": "창업자가 주식을 팔 때 투자자도 같은 조건으로 함께 팔 수 있는 권리.",
-    "chapter": "term"
-  },
-  {
-    "term": "동반매각권",
-    "alias": "드래그얼롱",
-    "category": "투자",
-    "text": "일정 조건에서 투자자가 다른 주주의 주식까지 함께 매각하도록 요구할 수 있는 권리.",
-    "chapter": "term"
-  },
-  {
-    "term": "우선매수권",
-    "alias": "",
-    "category": "투자",
-    "text": "주주가 주식을 팔 때 다른 주주가 같은 조건으로 먼저 살 수 있는 권리.",
-    "chapter": "term"
-  },
-  {
-    "term": "주식매수청구권",
-    "alias": "풋옵션",
-    "category": "투자",
-    "text": "계약 위반 등 사유가 있을 때 투자자가 회사나 창업자에게 주식을 사 가라고 요구하는 권리.",
-    "chapter": "term"
-  },
-  {
-    "term": "엔젤투자 소득공제",
-    "alias": "벤처투자 소득공제",
-    "category": "투자",
-    "text": "개인이 벤처기업 등에 투자한 금액의 일부를 종합소득에서 공제하는 제도. 3,000만원 이하 100%.",
-    "chapter": "postinvest"
-  },
-  {
-    "term": "벤처기업 확인",
-    "alias": "",
-    "category": "투자",
-    "text": "벤처기업법에 따른 확인. 투자, 연구개발, 혁신성장 유형 등이 있고 세제 혜택과 연결된다.",
-    "chapter": "postinvest"
-  },
-  {
-    "term": "외부감사",
-    "alias": "외감",
-    "category": "상장",
-    "text": "회계법인이 재무제표를 감사하는 것. 자산, 부채, 매출, 종업원 수 기준으로 대상이 정해진다.",
-    "chapter": "postinvest"
-  },
-  {
-    "term": "K-IFRS",
-    "alias": "한국채택국제회계기준",
-    "category": "상장",
-    "text": "상장법인이 의무로 쓰는 회계기준. 비상장 중소기업은 주로 일반기업회계기준을 쓴다.",
-    "chapter": "ipo"
-  },
-  {
-    "term": "지정감사",
-    "alias": "",
-    "category": "상장",
-    "text": "증권선물위원회가 감사인을 정해 주는 것. 상장 예정 법인 등이 대상.",
-    "chapter": "ipo"
-  },
-  {
-    "term": "기술특례상장",
-    "alias": "",
-    "category": "상장",
-    "text": "이익이 없어도 기술성 평가를 거쳐 코스닥에 상장하는 트랙.",
-    "chapter": "ipo"
-  },
-  {
-    "term": "의무보유",
-    "alias": "보호예수",
-    "category": "상장",
-    "text": "상장 후 최대주주 등이 일정 기간 주식을 팔지 못하도록 하는 제도.",
-    "chapter": "ipo"
-  },
-  {
-    "term": "무상증자",
-    "alias": "",
-    "category": "상장",
-    "text": "잉여금을 자본금으로 옮기고 주주에게 새 주식을 나눠 주는 것. 재원에 따라 의제배당 과세 여부가 달라진다.",
-    "chapter": "ipo"
-  },
-  {
-    "term": "구주 매각",
-    "alias": "",
-    "category": "상장",
-    "text": "신주 발행이 아니라 기존 주주가 가진 주식을 파는 것. 양도소득세는 판 주주가 낸다.",
-    "chapter": "exit"
-  },
-  {
-    "term": "적격합병",
-    "alias": "",
-    "category": "상장",
-    "text": "법인세법 요건을 갖춘 합병. 주주와 회사의 과세를 미뤄 준다.",
-    "chapter": "exit"
-  },
-  {
-    "term": "플립",
-    "alias": "해외 법인 전환",
-    "category": "투자",
-    "text": "해외에 모회사를 세우고 국내 법인을 그 자회사로 만드는 구조 변경.",
-    "chapter": "exit"
-  },
-  {
-    "term": "이전가격",
-    "alias": "",
-    "category": "국제",
-    "text": "특수관계에 있는 국내외 회사 사이 거래 가격. 정상가격과 다르면 세무서가 소득을 다시 계산한다.",
-    "chapter": "overseas"
-  },
-  {
-    "term": "외국납부세액공제",
-    "alias": "",
-    "category": "국제",
-    "text": "해외에서 낸 세금을 한국 법인세에서 빼 주는 제도. 한도 초과분은 10년간 이월.",
-    "chapter": "overseas"
-  },
-  {
-    "term": "해외직접투자",
-    "alias": "",
-    "category": "국제",
-    "text": "해외 법인 지분 10% 이상 취득 등. 외국환거래법상 송금 전 은행 신고 대상.",
-    "chapter": "overseas"
-  },
-  {
-    "term": "해외금융계좌 신고",
-    "alias": "",
-    "category": "국제",
-    "text": "해외 계좌 잔액 합계가 연중 어느 달 말일에 5억원을 넘으면 다음해 6월에 하는 신고.",
-    "chapter": "overseas"
-  },
-  {
-    "term": "고정사업장",
-    "alias": "",
-    "category": "국제",
-    "text": "외국 기업이 현지에서 사업을 하는 고정된 장소. 있으면 그 나라에서 법인세를 낸다.",
-    "chapter": "overseas"
-  },
-  {
-    "term": "거주자증명서",
-    "alias": "",
-    "category": "국제",
-    "text": "조세조약 제한세율을 적용받기 위해 해외 거래처에 내는 서류. 홈택스에서 발급.",
-    "chapter": "overseas"
-  },
-  {
-    "term": "보충적 평가방법",
-    "alias": "",
-    "category": "승계",
-    "text": "시가가 없는 비상장 주식을 순손익가치와 순자산가치로 평가하는 상증법상 방법.",
-    "chapter": "succession"
-  },
-  {
-    "term": "증여재산공제",
-    "alias": "",
-    "category": "승계",
-    "text": "증여받는 사람별로 10년간 일정 금액을 빼 주는 공제. 성년 자녀는 5,000만원.",
-    "chapter": "succession"
-  },
-  {
-    "term": "창업자금 증여세 과세특례",
-    "alias": "",
-    "category": "승계",
-    "text": "60세 이상 부모에게 받은 창업 자금을 5억원 공제 후 10%로 과세하는 특례. 상속 때 다시 합산.",
-    "chapter": "succession"
-  },
-  {
-    "term": "가업상속공제",
-    "alias": "",
-    "category": "승계",
-    "text": "10년 이상 경영한 가업을 상속할 때 상속재산에서 일정 금액을 빼 주는 제도.",
-    "chapter": "succession"
-  },
-  {
-    "term": "명의신탁",
-    "alias": "차명주식",
-    "category": "승계",
-    "text": "실제 소유자가 아닌 사람 이름으로 주식을 등록하는 것. 명의자에게 증여세가 과세된다.",
-    "chapter": "succession"
-  },
-  {
-    "term": "청산소득",
-    "alias": "",
-    "category": "정리",
-    "text": "법인 청산 때 잔여재산 가액이 자기자본을 넘는 금액. 법인세 과세 대상.",
-    "chapter": "closing"
-  },
-  {
-    "term": "의제배당",
-    "alias": "",
-    "category": "정리",
-    "text": "형식은 배당이 아니지만 배당으로 보아 과세하는 것. 청산 분배금, 일부 무상증자 등.",
-    "chapter": "closing"
-  },
-  {
-    "term": "제2차 납세의무",
-    "alias": "",
-    "category": "정리",
-    "text": "본래 납세자가 세금을 못 낼 때 과점주주 등이 대신 지는 납세 의무.",
-    "chapter": "closing"
-  },
-  {
-    "term": "휴면법인",
-    "alias": "",
-    "category": "정리",
-    "text": "마지막 등기 후 5년이 지난 법인. 공고를 거쳐 해산한 것으로 간주된다.",
-    "chapter": "closing"
-  },
-  {
-    "term": "폐업 시 잔존재화",
-    "alias": "",
-    "category": "정리",
-    "text": "폐업할 때 남아 있는 재고나 자산. 매입세액을 공제받았다면 부가세를 낸다.",
-    "chapter": "closing"
-  }
+  // 세금 일반
+  { term: "가산세", alias: "", category: "세금 일반", text: "신고, 납부, 증빙 의무를 지키지 않았을 때 본래 세금에 더해 내는 세금.", chapter: "evidence", source: ["국세기본법 제47조의3", L("국세기본법", "제47조의3")] },
+  { term: "과세표준", alias: "과표", category: "세금 일반", text: "세율을 곱하는 기준 금액. 법인세는 각 사업연도 소득에서 이월결손금 등을 뺀 금액이다.", chapter: "cit", source: ["법인세법 제13조", L("법인세법", "제13조")] },
+  { term: "산출세액", alias: "", category: "세금 일반", text: "과세표준에 세율을 곱해 나온 세액. 여기서 감면과 공제를 빼면 실제로 낼 세액이 된다.", chapter: "cit", source: ["법인세법 제55조", L("법인세법", "제55조")] },
+  { term: "원천징수", alias: "", category: "세금 일반", text: "소득을 지급하는 쪽이 받는 사람의 세금을 미리 떼어 대신 내는 제도.", chapter: "payroll", source: ["소득세법 제127조", L("소득세법", "제127조")] },
+  { term: "경정청구", alias: "", category: "세금 일반", text: "이미 신고한 세금이 많았을 때 바로잡아 돌려받도록 요청하는 절차. 법정신고기한이 지난 후 5년 안에 할 수 있다.", chapter: "incentive", source: ["국세기본법 제45조의2", L("국세기본법", "제45조의2")] },
+  { term: "부과제척기간", alias: "", category: "세금 일반", text: "세무서가 세금을 부과할 수 있는 기간. 일반적으로 5년, 무신고는 7년, 부정행위는 10년이다.", chapter: "savings", source: ["국세기본법 제26조의2", L("국세기본법", "제26조의2")] },
+  { term: "농어촌특별세", alias: "농특세", category: "세금 일반", text: "조세특례제한법 등에 따른 감면세액의 20% 등을 내는 국세. 창업중소기업 세액감면처럼 비과세인 감면도 있다.", chapter: "taxmap", source: ["농어촌특별세법 제5조", L("농어촌특별세법", "제5조")] },
+  { term: "인지세", alias: "", category: "세금 일반", text: "계약서 등 법에서 정한 문서를 작성할 때 기재 금액에 따라 정액으로 내는 국세.", chapter: "taxmap", source: ["인지세법 제3조", L("인지세법", "제3조")] },
+  { term: "등록면허세", alias: "", category: "세금 일반", text: "법인 설립, 증자 등 등기를 할 때 내는 지방세. 설립과 증자는 납입액의 0.4%이고 대도시는 3배 중과된다.", chapter: "setup", source: ["지방세법 제28조", L("지방세법", "제28조")] },
+  { term: "지방교육세", alias: "", category: "세금 일반", text: "등록면허세 등에 붙어 함께 내는 지방세. 등록면허세의 20%.", chapter: "setup", source: ["지방세법 제151조", L("지방세법", "제151조")] },
+  { term: "주민세 사업소분", alias: "", category: "세금 일반", text: "7월 1일 현재 사업소를 둔 사업자가 8월에 신고납부하는 지방세.", chapter: "taxmap", source: ["지방세법 제83조", L("지방세법", "제83조")] },
+  { term: "주민세 종업원분", alias: "", category: "세금 일반", text: "급여총액의 0.5%를 매월 내는 지방세. 월평균 급여총액이 일정 금액 이하인 사업소는 면세.", chapter: "taxmap", source: ["지방세법 제84조의3", L("지방세법", "제84조의3")] },
+  { term: "법인지방소득세", alias: "", category: "세금 일반", text: "법인세 과세표준에 따로 매기는 지방세. 법인세의 10% 수준이다.", chapter: "cit", source: ["지방세법 제103조의20", L("지방세법", "제103조의20")] },
+  { term: "간주취득세", alias: "", category: "세금 일반", text: "주식을 취득해 과점주주가 되면 회사가 가진 부동산 등을 지분만큼 취득한 것으로 보고 매기는 취득세.", chapter: "sharetax", source: ["지방세법 제7조", L("지방세법", "제7조")] },
+  { term: "제2차 납세의무", alias: "", category: "세금 일반", text: "본래 납세자가 세금을 다 내지 못할 때 과점주주 등이 대신 지는 납세 의무.", chapter: "sharetax", source: ["국세기본법 제39조", L("국세기본법", "제39조")] },
+  { term: "성실신고확인", alias: "", category: "세금 일반", text: "일정 요건의 사업자가 세무대리인의 확인을 받아 신고하는 제도. 대상이면 신고기한이 한 달 늘어난다.", chapter: "cit", source: ["법인세법 제60조", L("법인세법", "제60조")] },
+
+  // 회계
+  { term: "복식부기", alias: "", category: "회계", text: "하나의 거래를 차변과 대변 두 곳에 같은 금액으로 기록하는 장부 작성 방식.", chapter: "basics" },
+  { term: "차변", alias: "", category: "회계", text: "분개에서 왼쪽 칸. 자산 증가, 비용 발생 등을 적는다.", chapter: "basics" },
+  { term: "대변", alias: "", category: "회계", text: "분개에서 오른쪽 칸. 부채나 자본 증가, 수익 발생 등을 적는다.", chapter: "basics" },
+  { term: "분개", alias: "", category: "회계", text: "거래를 차변과 대변으로 나눠 계정과목과 금액을 정하는 일.", chapter: "basics" },
+  { term: "발생주의", alias: "", category: "회계", text: "현금이 오간 시점이 아니라 거래가 발생한 시점에 수익과 비용을 인식하는 원칙.", chapter: "basics" },
+  { term: "감가상각", alias: "", category: "회계", text: "여러 해 쓰는 자산의 취득 원가를 사용 기간에 나눠 비용으로 처리하는 것.", chapter: "basics", source: ["법인세법 시행규칙 별표 5", L("법인세법시행규칙", "별표5")] },
+  { term: "기준내용연수", alias: "", category: "회계", text: "세법이 자산 종류별로 정한 감가상각 기간. 비품은 5년.", chapter: "basics", source: ["법인세법 시행규칙 별표 5", L("법인세법시행규칙", "별표5")] },
+  { term: "재무상태표", alias: "", category: "회계", text: "결산일 현재 회사의 자산, 부채, 자본을 보여주는 표.", chapter: "basics" },
+  { term: "손익계산서", alias: "", category: "회계", text: "1년 동안의 수익과 비용, 이익을 보여주는 표.", chapter: "basics" },
+  { term: "현금흐름표", alias: "", category: "회계", text: "현금이 어디서 들어오고 어디로 나갔는지 보여주는 표.", chapter: "basics" },
+  { term: "가지급금", alias: "", category: "회계", text: "회사에서 나간 돈 중 용도가 확인되지 않은 것. 대표에게 빌려준 돈으로 정리되는 경우가 많고 인정이자 등 불이익이 있다.", chapter: "mistakes", source: ["법인세법 제28조", L("법인세법", "제28조")] },
+  { term: "가수금", alias: "", category: "회계", text: "회사에 들어온 돈 중 출처가 정리되지 않은 것. 대부분 대표가 회사에 넣은 돈이며 회사의 부채다.", chapter: "basics" },
+  { term: "외상매출금", alias: "", category: "회계", text: "매출은 했지만 아직 받지 못한 돈.", chapter: "basics" },
+  { term: "미지급금", alias: "", category: "회계", text: "비용은 생겼지만 아직 내지 않은 돈.", chapter: "basics" },
+  { term: "이익잉여금", alias: "", category: "회계", text: "지금까지 쌓인 이익 중 배당하지 않은 부분.", chapter: "basics" },
+  { term: "주식발행초과금", alias: "", category: "회계", text: "주식을 액면가보다 비싸게 발행했을 때 액면가를 넘는 부분. 자본금이 아니라 자본잉여금으로 분류한다.", chapter: "dilution", source: ["상법 제459조", L("상법", "제459조")] },
+  { term: "자본금", alias: "", category: "회계", text: "액면주식 회사는 발행주식의 액면총액.", chapter: "dilution", source: ["상법 제451조", L("상법", "제451조")] },
+  { term: "결산", alias: "", category: "회계", text: "사업연도가 끝난 뒤 장부를 마감하고 재무제표를 만드는 일.", chapter: "basics" },
+  { term: "외부감사", alias: "외감", category: "회계", text: "회계법인이 재무제표를 감사하는 것. 자산, 부채, 매출, 종업원 수로 대상이 정해진다.", chapter: "postinvest", source: ["외부감사법 시행령 제5조", L("주식회사등의외부감사에관한법률시행령", "제5조")] },
+  { term: "K-IFRS", alias: "한국채택국제회계기준", category: "회계", text: "상장법인 등이 쓰는 국제회계기준. 비상장 중소기업은 주로 일반기업회계기준을 쓴다.", chapter: "ipo" },
+
+  // 증빙, 부가세
+  { term: "적격증빙", alias: "정규증빙", category: "증빙", text: "세법이 인정하는 지출 증빙. 세금계산서, 계산서, 신용카드 매출전표, 현금영수증.", chapter: "evidence", source: ["법인세법 제116조", L("법인세법", "제116조")] },
+  { term: "세금계산서", alias: "", category: "증빙", text: "부가세 과세 거래에서 공급자가 발급하는 증빙. 매입세액 공제의 기본 서류.", chapter: "evidence", source: ["부가가치세법 제32조", L("부가가치세법", "제32조")] },
+  { term: "월합계 세금계산서", alias: "", category: "증빙", text: "한 달 거래를 모아 말일자로 작성하는 세금계산서. 다음 달 10일까지 발급할 수 있다.", chapter: "evidence", source: ["부가가치세법 제34조", L("부가가치세법", "제34조")] },
+  { term: "수정세금계산서", alias: "", category: "증빙", text: "이미 발급한 세금계산서에 오류가 있거나 계약이 바뀌었을 때 발급하는 세금계산서.", chapter: "evidence", source: ["부가가치세법 제32조", L("부가가치세법", "제32조")] },
+  { term: "계산서", alias: "", category: "증빙", text: "부가세가 면제되는 재화나 용역을 공급할 때 발급하는 증빙.", chapter: "evidence" },
+  { term: "현금영수증", alias: "", category: "증빙", text: "현금이나 계좌이체로 결제할 때 받는 적격증빙. 사업자는 지출증빙용으로 받는다.", chapter: "evidence" },
+  { term: "공급가액", alias: "", category: "부가세", text: "부가세를 뺀 거래 금액. 공급가액의 10%가 부가세다.", chapter: "vat", source: ["부가가치세법 제30조", L("부가가치세법", "제30조")] },
+  { term: "공급대가", alias: "", category: "부가세", text: "부가세를 포함한 금액. 간이과세 기준을 판단할 때 쓴다.", chapter: "entity", source: ["부가가치세법 제61조", L("부가가치세법", "제61조")] },
+  { term: "공급시기", alias: "", category: "부가세", text: "세금계산서 작성일자의 기준이 되는 날. 재화를 넘기거나 용역 제공을 마친 때.", chapter: "evidence", source: ["부가가치세법 제15조", L("부가가치세법", "제15조")] },
+  { term: "매출세액", alias: "", category: "부가세", text: "판매하면서 고객에게 받은 부가세.", chapter: "vat" },
+  { term: "매입세액", alias: "", category: "부가세", text: "물건이나 용역을 살 때 낸 부가세. 요건을 갖추면 매출세액에서 공제한다.", chapter: "vat", source: ["부가가치세법 제38조", L("부가가치세법", "제38조")] },
+  { term: "예정고지", alias: "", category: "부가세", text: "직전 과세기간 공급가액이 1억 5천만원 미만인 법인 등에 직전 납부세액의 50%를 고지하는 것. 예정신고를 대신한다.", chapter: "vat", source: ["부가가치세법 제48조", L("부가가치세법", "제48조")] },
+  { term: "조기환급", alias: "", category: "부가세", text: "설비투자나 수출 등으로 환급세액이 생겼을 때 확정신고를 기다리지 않고 빨리 돌려받는 제도.", chapter: "vat", source: ["부가가치세법 시행령 제107조", L("부가가치세법시행령", "제107조")] },
+  { term: "영세율", alias: "", category: "부가세", text: "0%의 부가세율. 수출 등에 적용되며 매입세액은 환급받을 수 있다.", chapter: "vat", source: ["부가가치세법 제21조", L("부가가치세법", "제21조")] },
+  { term: "간이과세자", alias: "간이과세", category: "부가세", text: "직전 연도 공급대가가 1억 400만원 미만인 개인사업자. 법인은 해당하지 않는다.", chapter: "entity", source: ["부가가치세법 제61조", L("부가가치세법", "제61조")] },
+
+  // 원천세, 급여
+  { term: "간이지급명세서", alias: "", category: "원천세", text: "원천징수한 소득의 지급 내역을 짧은 주기로 내는 서류. 사업소득은 지급한 달의 다음 달 말일까지 낸다.", chapter: "payroll", source: ["소득세법 제164조의3", L("소득세법", "제164조의3")] },
+  { term: "지급명세서", alias: "", category: "원천세", text: "지급한 소득과 원천징수 내역을 국세청에 내는 서류. 근로소득은 다음 해 3월 10일까지.", chapter: "payroll", source: ["소득세법 제164조", L("소득세법", "제164조")] },
+  { term: "반기납부", alias: "", category: "원천세", text: "상시고용인원 20명 이하 사업장이 승인을 받아 원천세를 반년에 한 번 내는 것.", chapter: "payroll", source: ["소득세법 시행령 제186조", L("소득세법시행령", "제186조")] },
+  { term: "연말정산", alias: "", category: "원천세", text: "1년간 원천징수한 근로소득세를 실제 세액과 맞춰 정산하는 절차. 다음 해 2월분 급여 지급 때 한다.", chapter: "payroll", source: ["소득세법 제137조", L("소득세법", "제137조")] },
+  { term: "비영업대금의 이익", alias: "", category: "원천세", text: "금융업이 아닌 개인이나 법인이 돈을 빌려주고 받는 이자. 원천징수세율 25%.", chapter: "loantax", source: ["소득세법 제129조", L("소득세법", "제129조")] },
+  { term: "비과세 근로소득", alias: "", category: "급여", text: "근로소득이지만 소득세를 매기지 않는 항목. 식대 월 20만원, 6세 이하 자녀 1명당 보육수당 월 20만원 등.", chapter: "savings", source: ["소득세법 제12조", L("소득세법", "제12조")] },
+  { term: "기준소득월액", alias: "", category: "급여", text: "국민연금 보험료를 매기는 기준 월 소득. 상한과 하한이 있고 매년 7월에 바뀐다.", chapter: "payroll", source: ["국민연금공단 연금보험료 안내", "https://www.nps.or.kr/pnsinfo/ntpsklg/getOHAF0038M0.do"] },
+  { term: "4대보험", alias: "사회보험", category: "급여", text: "국민연금, 건강보험(장기요양 포함), 고용보험, 산재보험.", chapter: "payroll" },
+  { term: "소득월액보험료", alias: "", category: "급여", text: "직장가입자의 보수 외 소득이 연 2,000만원을 넘을 때 추가로 내는 건강보험료.", chapter: "savings", source: ["국민건강보험법 시행령 제41조", L("국민건강보험법시행령", "제41조")] },
+  { term: "중소기업 취업자 소득세 감면", alias: "", category: "급여", text: "중소기업에 취업한 청년 등이 근로소득세를 일정 기간 감면받는 제도. 청년은 5년간 90%, 연 200만원 한도.", chapter: "youth", source: ["조세특례제한법 제30조", L("조세특례제한법", "제30조")] },
+
+  // 법인세
+  { term: "익금", alias: "", category: "법인세", text: "세법상 인정되는 수익.", chapter: "cit", source: ["법인세법 제15조", L("법인세법", "제15조")] },
+  { term: "손금", alias: "", category: "법인세", text: "세법상 인정되는 비용.", chapter: "cit", source: ["법인세법 제19조", L("법인세법", "제19조")] },
+  { term: "손금불산입", alias: "", category: "법인세", text: "회계상 비용으로 처리했지만 세법이 비용으로 인정하지 않아 소득에 다시 더하는 것.", chapter: "cit" },
+  { term: "익금불산입", alias: "", category: "법인세", text: "회계상 수익이지만 세법상 소득에 넣지 않는 것.", chapter: "cit" },
+  { term: "세무조정", alias: "", category: "법인세", text: "회계상 이익을 세법상 소득으로 바꾸기 위해 차이를 더하고 빼는 과정.", chapter: "cit" },
+  { term: "결손금", alias: "", category: "법인세", text: "손금이 익금보다 많아 생긴 마이너스 소득. 이후 15년간 소득에서 공제할 수 있다.", chapter: "cit", source: ["법인세법 제13조", L("법인세법", "제13조")] },
+  { term: "이월결손금", alias: "", category: "법인세", text: "과거 사업연도에 생겨 아직 공제하지 못한 결손금.", chapter: "cit", source: ["법인세법 제13조", L("법인세법", "제13조")] },
+  { term: "결손금 소급공제", alias: "", category: "법인세", text: "중소기업이 올해 결손금으로 직전 사업연도에 낸 법인세를 돌려받는 제도.", chapter: "cit", source: ["법인세법 제72조", L("법인세법", "제72조")] },
+  { term: "중간예납", alias: "", category: "법인세", text: "사업연도 상반기분 법인세를 미리 내는 것. 12월 결산 법인은 8월 31일까지.", chapter: "cit", source: ["법인세법 제63조", L("법인세법", "제63조")] },
+  { term: "가결산", alias: "", category: "법인세", text: "사업연도 중간에 임시로 결산해 실적을 계산하는 것. 중간예납 세액을 상반기 실적으로 계산할 때 쓴다.", chapter: "cit", source: ["법인세법 제63조의2", L("법인세법", "제63조의2")] },
+  { term: "분납", alias: "", category: "법인세", text: "납부할 세액이 1천만원을 넘을 때 일부를 나눠 내는 것. 중소기업은 2개월 안에.", chapter: "cit", source: ["법인세법 제64조", L("법인세법", "제64조")] },
+  { term: "최저한세", alias: "", category: "법인세", text: "감면과 공제를 받아도 최소한 내야 하는 세금. 중소기업은 감면 전 과세표준의 7%.", chapter: "cit", source: ["조세특례제한법 제132조", L("조세특례제한법", "제132조")] },
+  { term: "세액감면", alias: "", category: "법인세", text: "산출세액의 일정 비율을 깎아 주는 것. 창업중소기업 세액감면이 대표적이다.", chapter: "incentive", source: ["조세특례제한법 제6조", L("조세특례제한법", "제6조")] },
+  { term: "세액공제", alias: "", category: "법인세", text: "특정 지출이나 고용 증가에 대해 정해진 금액을 세액에서 빼 주는 것.", chapter: "incentive" },
+  { term: "통합고용세액공제", alias: "", category: "법인세", text: "상시근로자 수가 늘면 증가 인원에 따라 세액을 공제하는 제도. 2026년 과세연도부터 금액 구조가 바뀌었다.", chapter: "incentive", source: ["조세특례제한법 제29조의8", L("조세특례제한법", "제29조의8")] },
+  { term: "기업업무추진비", alias: "접대비", category: "법인세", text: "거래처를 위해 쓴 식대, 선물, 경조사비 등. 연간 한도가 있고 3만원을 넘으면 적격증빙이 필요하다.", chapter: "mistakes", source: ["법인세법 제25조", L("법인세법", "제25조")] },
+  { term: "복리후생비", alias: "", category: "법인세", text: "임직원을 위해 쓴 식대, 회식비 등.", chapter: "mistakes" },
+  { term: "인정이자", alias: "", category: "법인세", text: "특수관계인에게 빌려준 돈에 대해 이자를 받지 않았어도 세법상 시가 이자를 받은 것으로 보는 것. 가중평균차입이자율이 원칙이다.", chapter: "mistakes", source: ["법인세법 시행령 제89조", L("법인세법시행령", "제89조")] },
+  { term: "가중평균차입이자율", alias: "", category: "법인세", text: "회사가 빌린 돈들의 이자율을 금액 비율로 평균한 이자율. 특수관계인 대여금의 시가 이자율 원칙.", chapter: "loantax", source: ["법인세법 시행령 제89조", L("법인세법시행령", "제89조")] },
+  { term: "당좌대출이자율", alias: "", category: "법인세", text: "세법이 정한 시가 이자율의 하나. 연 4.6%.", chapter: "loantax", source: ["법인세법 시행규칙 제43조", L("법인세법시행규칙", "제43조")] },
+  { term: "업무용승용차", alias: "", category: "법인세", text: "법인 명의로 업무에 쓰는 승용차. 보험 가입, 운행기록, 감가상각 한도 규정이 따로 있다.", chapter: "mistakes", source: ["법인세법 제27조의2", L("법인세법", "제27조의2")] },
+  { term: "특수관계인", alias: "", category: "법인세", text: "대표, 주요 주주, 그 가족처럼 회사와 경제적으로 연결된 사람이나 법인. 이들과의 거래는 시가 기준으로 따진다.", chapter: "loantax", source: ["법인세법 제2조", L("법인세법", "제2조")] },
+
+  // 설립, 감면
+  { term: "과밀억제권역", alias: "수도권 과밀억제권역", category: "설립", text: "수도권정비계획법상 인구와 산업이 지나치게 몰린 지역. 서울 전역과 인천, 경기 일부. 창업 감면율과 등록면허세에 영향을 준다.", chapter: "setup", source: ["조세특례제한법 제6조", L("조세특례제한법", "제6조")] },
+  { term: "대도시", alias: "", category: "설립", text: "지방세법에서 등록면허세 중과에 쓰는 지역. 과밀억제권역에서 산업단지를 뺀 곳.", chapter: "setup", source: ["지방세법 제28조", L("지방세법", "제28조")] },
+  { term: "인구감소지역", alias: "", category: "설립", text: "행정안전부가 지정한 인구 감소 지역. 2026년 이후 창업은 수도권 안이라도 이 지역이면 수도권 밖과 같은 감면율을 받는다.", chapter: "incentive", source: ["조세특례제한법 제6조", L("조세특례제한법", "제6조")] },
+  { term: "발기설립", alias: "", category: "설립", text: "발기인이 설립 때 발행하는 주식을 모두 인수하는 설립 방식. 스타트업 대부분이 이 방식이다.", chapter: "setup", source: ["상법 제295조", L("상법", "제295조")] },
+  { term: "발기인", alias: "", category: "설립", text: "정관을 작성하고 회사를 세우는 사람. 1명이어도 된다.", chapter: "shares", source: ["상법 제288조", L("상법", "제288조")] },
+  { term: "정관", alias: "", category: "설립", text: "회사의 기본 규칙을 적은 문서. 목적 사업, 주식, 임원, 스톡옵션 근거 등을 정한다.", chapter: "setup" },
+  { term: "잔고증명서", alias: "", category: "설립", text: "자본금이 계좌에 있음을 은행이 증명하는 서류. 자본금 10억원 미만 발기설립은 납입증명 대신 쓸 수 있다.", chapter: "setup", source: ["상법 제318조", L("상법", "제318조")] },
+  { term: "창업중소기업 세액감면", alias: "창업 감면", category: "설립", text: "창업 후 최초 소득 발생 연도부터 5년간 법인세나 소득세를 감면하는 제도. 지역과 나이에 따라 감면율이 다르다.", chapter: "incentive", source: ["조세특례제한법 제6조", L("조세특례제한법", "제6조")] },
+  { term: "지배주주등", alias: "", category: "설립", text: "법인의 지분을 일정 이상 가진 주주와 특수관계인. 청년 창업 감면에서 대표가 이 요건을 갖춘 최대주주여야 한다.", chapter: "youth", source: ["조세특례제한법 시행령 제5조", L("조세특례제한법시행령", "제5조")] },
+  { term: "기업부설연구소", alias: "연구개발전담부서", category: "설립", text: "한국산업기술진흥협회 인정을 받은 회사 내 연구 조직. 연구개발비 세액공제와 연구보조비 비과세의 요건이 된다.", chapter: "incentive", source: ["소득세법 시행령 제12조", L("소득세법시행령", "제12조")] },
+  { term: "벤처기업 확인", alias: "", category: "설립", text: "벤처기업법에 따른 확인. 투자 유형은 투자금 5천만원 이상이고 자본금 대비 10% 이상이어야 한다.", chapter: "postinvest", source: ["벤처기업법 시행령 제2조의3", L("벤처기업육성에관한특별법시행령", "제2조의3")] },
+
+  // 대출
+  { term: "정책자금", alias: "", category: "대출", text: "정부 기관이 중소기업과 소상공인에게 낮은 금리로 빌려주는 자금. 중진공과 소진공이 운영한다.", chapter: "policyloan", source: ["2026년 중소기업 정책자금 융자계획 공고", "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=196563&seq=6"] },
+  { term: "직접대출", alias: "", category: "대출", text: "중진공이 기업을 평가해 직접 빌려주는 방식. 보증서를 쓸 수 없다.", chapter: "policyloan", source: ["2026년 중소기업 정책자금 융자계획 공고", "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=196563&seq=6"] },
+  { term: "대리대출", alias: "", category: "대출", text: "중진공이 추천하고 협약 은행이 빌려주는 방식. 보증서를 쓸 수 있다.", chapter: "policyloan", source: ["2026년 중소기업 정책자금 융자계획 공고", "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=196563&seq=6"] },
+  { term: "거치기간", alias: "", category: "대출", text: "원금은 갚지 않고 이자만 내는 기간. 이 기간이 끝나면 원금을 나눠 갚는다.", chapter: "loanmanage", source: ["2026년 중소기업 정책자금 융자계획 공고", "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=196563&seq=6"] },
+  { term: "정책자금 기준금리", alias: "", category: "대출", text: "중진공 정책자금 금리의 기준이 되는 금리. 자금별로 이 금리에 더하거나 뺀다.", chapter: "policyloan", source: ["중진공 정책자금 기준금리 안내", "https://www.kosmes.or.kr/nsh/SH/SIT/SHSIT031M0.do?page=08"] },
+  { term: "투자조건부 융자", alias: "", category: "대출", text: "최근 24개월 안에 투자를 받은 기업에 금리를 낮춰 빌려주고 중진공이 신주인수권을 갖는 방식.", chapter: "policyloan", source: ["2026년 중소기업 정책자금 융자계획 공고", "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=196563&seq=6"] },
+  { term: "이차보전", alias: "", category: "대출", text: "기업이 은행에서 빌린 돈의 이자 일부를 기관이 대신 부담하는 제도.", chapter: "loantax", source: ["2026년 중소기업 정책자금 융자계획 공고", "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=196563&seq=6"] },
+  { term: "보증서 대출", alias: "", category: "대출", text: "보증기관이 발급한 보증서로 은행에서 빌리는 대출.", chapter: "guarantee" },
+  { term: "보증비율", alias: "", category: "대출", text: "은행 대출금 중 보증기관이 책임지는 비율. 기술보증기금 신규보증은 85%가 기본.", chapter: "guarantee", source: ["기술보증기금 보증비율", "https://www.kibo.or.kr/main/work/work010302.do"] },
+  { term: "보증료", alias: "", category: "대출", text: "보증서를 받는 대가로 보증기관에 매년 내는 돈. 보증금액에 요율을 곱한다.", chapter: "guarantee", source: ["기술보증기금 보증료", "https://www.kibo.or.kr/main/work/work010301.do"] },
+  { term: "연대보증", alias: "", category: "대출", text: "회사가 빚을 못 갚으면 보증인이 함께 갚을 책임을 지는 것. 공공기관 대출과 보증에서는 법인 대표자 연대보증이 폐지됐다.", chapter: "loantypes", source: ["금융위원회 보도자료", "https://korea.kr/news/pressReleaseView.do?newsId=156257450"] },
+  { term: "소상공인", alias: "", category: "대출", text: "상시근로자 5명 미만, 광업 제조업 건설업 운수업은 10명 미만인 사업자.", chapter: "policyloan", source: ["소상공인시장진흥공단 정책자금 안내", "https://semas.or.kr/web/SUP01/SUP0103/SUP010301.kmdc"] },
+  { term: "부채비율", alias: "", category: "대출", text: "부채를 자기자본으로 나눈 비율. 정책자금 심사에서 업종별 기준을 넘으면 제외된다.", chapter: "loanmanage", source: ["2026년 중소기업 정책자금 융자계획 공고", "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=196563&seq=6"] },
+
+  // 지분
+  { term: "액면가", alias: "1주의 금액", category: "지분", text: "정관에 정한 주식 1주의 금액. 액면주식은 100원 이상.", chapter: "shares", source: ["상법 제329조", L("상법", "제329조")] },
+  { term: "종류주식", alias: "", category: "지분", text: "배당, 잔여재산 분배, 의결권, 상환, 전환 등의 내용이 보통주와 다른 주식. 정관에 근거가 있어야 한다.", chapter: "shares", source: ["상법 제344조", L("상법", "제344조")] },
+  { term: "상환주식", alias: "", category: "지분", text: "회사 이익으로 소각할 수 있는 종류주식. 회사가 상환하는 방식과 주주가 청구하는 방식이 있다.", chapter: "shares", source: ["상법 제345조", L("상법", "제345조")] },
+  { term: "전환주식", alias: "", category: "지분", text: "다른 종류의 주식으로 바꿀 수 있는 주식.", chapter: "shares", source: ["상법 제346조", L("상법", "제346조")] },
+  { term: "명의개서", alias: "", category: "지분", text: "주식을 넘겨받은 사람의 성명과 주소를 주주명부에 올리는 것. 해야 회사에 주주라고 주장할 수 있다.", chapter: "shares", source: ["상법 제337조", L("상법", "제337조")] },
+  { term: "주주명부", alias: "", category: "지분", text: "주주의 이름, 주소, 주식 수를 적은 회사 장부.", chapter: "shares", source: ["상법 제337조", L("상법", "제337조")] },
+  { term: "특별결의", alias: "", category: "지분", text: "주주총회에서 일반 결의보다 많은 찬성이 필요한 결의. 감자, 스톡옵션 부여 등에 필요하다.", chapter: "capital", source: ["상법 제434조", L("상법", "제434조")] },
+  { term: "제3자 배정", alias: "", category: "지분", text: "기존 주주가 아닌 사람에게 신주를 배정하는 것. 정관 근거와 경영상 목적이 필요하다.", chapter: "capital", source: ["상법 제418조", L("상법", "제418조")] },
+  { term: "납입기일", alias: "", category: "지분", text: "신주 대금을 내기로 정한 날. 그 다음 날부터 주주가 된다.", chapter: "capital", source: ["상법 제423조", L("상법", "제423조")] },
+  { term: "변경등기", alias: "", category: "지분", text: "등기사항이 바뀌었을 때 하는 등기. 2주 안에 해야 한다.", chapter: "capital", source: ["상법 제183조", L("상법", "제183조")] },
+  { term: "무상증자", alias: "", category: "지분", text: "준비금을 자본금으로 옮기고 주주에게 새 주식을 나눠 주는 것. 재원에 따라 배당으로 과세될 수 있다.", chapter: "capital", source: ["상법 제461조", L("상법", "제461조")] },
+  { term: "감자", alias: "자본금 감소", category: "지분", text: "자본금을 줄이는 것. 주주총회 결의와 채권자 이의 절차가 필요하다.", chapter: "capital", source: ["상법 제438조", L("상법", "제438조")] },
+  { term: "자기주식", alias: "", category: "지분", text: "회사가 사들인 자기 회사 주식. 배당가능이익 범위 안에서 살 수 있다.", chapter: "capital", source: ["상법 제341조", L("상법", "제341조")] },
+  { term: "배당가능이익", alias: "", category: "지분", text: "순자산에서 자본금, 준비금 등을 뺀 금액. 배당과 자기주식 취득의 한도.", chapter: "capital", source: ["상법 제462조", L("상법", "제462조")] },
+  { term: "의제배당", alias: "", category: "지분", text: "형식은 배당이 아니지만 배당으로 보아 과세하는 것. 일부 무상증자, 청산 분배금 등.", chapter: "capital", source: ["소득세법 제17조", L("소득세법", "제17조")] },
+  { term: "대주주", alias: "", category: "지분", text: "양도소득세율을 정할 때 쓰는 기준. 비상장 주식은 지분 4% 이상 또는 시가 10억원 이상.", chapter: "sharetax", source: ["소득세법 시행령 제167조의8", L("소득세법시행령", "제167조의8")] },
+  { term: "소액주주", alias: "", category: "지분", text: "대주주에 해당하지 않는 주주. 비상장 중소기업 주식을 팔면 10% 세율.", chapter: "sharetax", source: ["소득세법 제104조", L("소득세법", "제104조")] },
+  { term: "과점주주", alias: "", category: "지분", text: "본인과 특수관계인 지분 합계가 50%를 넘으면서 실질적으로 권리를 행사하는 주주.", chapter: "sharetax", source: ["지방세기본법 제46조", L("지방세기본법", "제46조")] },
+  { term: "증권거래세", alias: "", category: "지분", text: "주식을 팔 때 양도가액에 붙는 세금. 비상장 주식은 0.35%.", chapter: "sharetax", source: ["증권거래세법 제8조", L("증권거래세법", "제8조")] },
+  { term: "예정신고", alias: "", category: "지분", text: "확정신고 전에 미리 하는 신고. 주식 양도소득세는 양도한 반기 말일부터 2개월 안에.", chapter: "sharetax", source: ["소득세법 제105조", L("소득세법", "제105조")] },
+  { term: "명의신탁", alias: "차명주식", category: "지분", text: "실제 소유자가 아닌 사람 이름으로 주식을 등록하는 것. 실제 소유자가 명의자에게 증여한 것으로 보고, 증여세는 실제 소유자가 낸다.", chapter: "sharetax", source: ["상속세 및 증여세법 제4조의2", L("상속세및증여세법", "제4조의2")] },
+  { term: "주식매수선택권", alias: "스톡옵션", category: "지분", text: "임직원이 미리 정한 가격으로 회사 주식을 살 수 있는 권리. 결의일부터 2년 이상 재직해야 행사할 수 있다.", chapter: "stockoption", source: ["상법 제340조의4", L("상법", "제340조의4")] },
+  { term: "행사가격", alias: "", category: "지분", text: "스톡옵션으로 주식을 살 때 내는 가격.", chapter: "stockoption", source: ["상법 제340조의2", L("상법", "제340조의2")] },
+  { term: "보충적 평가방법", alias: "", category: "지분", text: "시가가 없는 비상장 주식을 순손익가치와 순자산가치를 3:2로 가중평균해 평가하는 방법.", chapter: "valuation", source: ["상속세 및 증여세법 시행령 제54조", L("상속세및증여세법시행령", "제54조")] },
+  { term: "순손익가치", alias: "", category: "지분", text: "1주당 순손익액을 연 10%로 나눠 구한 주식 가치.", chapter: "valuation", source: ["상속세 및 증여세법 시행규칙 제17조", L("상속세및증여세법시행규칙", "제17조")] },
+  { term: "순자산가치", alias: "", category: "지분", text: "회사 순자산을 발행주식 수로 나눈 주식 가치.", chapter: "valuation", source: ["상속세 및 증여세법 시행령 제54조", L("상속세및증여세법시행령", "제54조")] },
+  { term: "최대주주 할증", alias: "", category: "지분", text: "최대주주 등의 주식 평가액에 20%를 더하는 것. 중소기업 등은 제외.", chapter: "valuation", source: ["상속세 및 증여세법 제63조", L("상속세및증여세법", "제63조")] },
+  { term: "희석", alias: "", category: "지분", text: "신주 발행으로 기존 주주의 지분율이 줄어드는 것.", chapter: "dilution" },
+  { term: "캡테이블", alias: "지분표", category: "지분", text: "주주별 주식 수, 종류, 취득가, 스톡옵션을 정리한 표.", chapter: "dilution" },
+  { term: "스톡옵션 풀", alias: "", category: "지분", text: "직원 스톡옵션으로 쓰기 위해 미리 떼어 두는 주식 물량.", chapter: "dilution" },
+
+  // 투자, 상장
+  { term: "프리머니", alias: "", category: "투자", text: "투자금이 들어오기 직전의 기업가치.", chapter: "dilution" },
+  { term: "포스트머니", alias: "", category: "투자", text: "프리머니에 투자금을 더한 기업가치. 투자자 지분율은 투자금을 포스트머니로 나눈 값.", chapter: "dilution" },
+  { term: "텀싯", alias: "투자조건 요약서", category: "투자", text: "본계약 전에 기업가치, 투자금액, 주요 권리를 정리한 문서. 보통 법적 구속력이 없다.", chapter: "invest" },
+  { term: "실사", alias: "", category: "투자", text: "투자자가 투자 전에 회사의 재무, 법률, 세무 자료를 검토하는 것.", chapter: "invest" },
+  { term: "상환전환우선주", alias: "RCPS", category: "투자", text: "상환과 전환에 관한 내용을 정한 종류주식. 국내 VC 투자에서 흔히 쓴다.", chapter: "invest", source: ["상법 제345조", L("상법", "제345조")] },
+  { term: "전환우선주", alias: "CPS", category: "투자", text: "상환권 없이 전환과 우선권을 정한 종류주식.", chapter: "invest", source: ["상법 제346조", L("상법", "제346조")] },
+  { term: "전환사채", alias: "CB", category: "투자", text: "일정 조건에서 주식으로 바꿀 수 있는 회사채. 전환 전까지는 부채.", chapter: "invest" },
+  { term: "조건부지분인수계약", alias: "SAFE", category: "투자", text: "상환만기일과 이자가 없고, 다음 투자 때 정해지는 조건으로 지분을 받는 투자 계약.", chapter: "invest", source: ["벤처투자촉진법 제2조", L("벤처투자촉진에관한법률", "제2조")] },
+  { term: "리픽싱", alias: "전환가격 조정", category: "투자", text: "후속 투자가 더 낮은 가격에 이뤄지면 기존 우선주의 전환가격을 낮추는 조항.", chapter: "term" },
+  { term: "공동매도권", alias: "태그얼롱", category: "투자", text: "창업자가 주식을 팔 때 투자자도 같은 조건으로 함께 팔 수 있는 권리.", chapter: "term" },
+  { term: "동반매각권", alias: "드래그얼롱", category: "투자", text: "일정 조건에서 투자자가 다른 주주의 주식까지 함께 팔도록 요구할 수 있는 권리.", chapter: "term" },
+  { term: "우선매수권", alias: "", category: "투자", text: "주주가 주식을 팔 때 다른 주주가 같은 조건으로 먼저 살 수 있는 권리.", chapter: "term" },
+  { term: "주식매수청구권", alias: "풋옵션", category: "투자", text: "계약 위반 등 사유가 있을 때 투자자가 회사나 창업자에게 주식을 사 가라고 요구하는 권리.", chapter: "term" },
+  { term: "잔여재산 우선분배", alias: "", category: "투자", text: "청산이나 매각 때 우선주 투자자가 정해진 금액을 먼저 받는 권리.", chapter: "term" },
+  { term: "이해관계인 연대책임", alias: "", category: "투자", text: "회사의 투자계약 위반에 대표 등 개인도 함께 책임지게 하는 조항. 벤처투자촉진법상 벤처투자회사는 원칙적으로 이런 조항을 둘 수 없다.", chapter: "term", source: ["벤처투자촉진법 제39조", L("벤처투자촉진에관한법률", "제39조")] },
+  { term: "엔젤투자 소득공제", alias: "", category: "투자", text: "개인이 벤처기업 등에 투자한 금액 일부를 종합소득에서 공제하는 제도. 3,000만원 이하 100%.", chapter: "postinvest", source: ["조세특례제한법 제16조", L("조세특례제한법", "제16조")] },
+  { term: "구주 매각", alias: "", category: "투자", text: "신주가 아니라 기존 주주가 가진 주식을 파는 것. 세금은 판 주주가 낸다.", chapter: "exit" },
+  { term: "언아웃", alias: "", category: "투자", text: "매각 후 실적에 따라 대금을 추가로 받는 조건.", chapter: "exit" },
+  { term: "적격합병", alias: "", category: "투자", text: "법인세법 요건을 갖춘 합병. 과세를 미룬다.", chapter: "exit", source: ["법인세법 제44조", L("법인세법", "제44조")] },
+  { term: "포괄적 주식교환", alias: "", category: "투자", text: "회사 주식 전부를 다른 회사 주식과 맞바꿔 완전자회사가 되는 것. 요건을 갖추면 과세 특례가 있다.", chapter: "exit", source: ["조세특례제한법 제38조", L("조세특례제한법", "제38조")] },
+  { term: "플립", alias: "해외 법인 전환", category: "투자", text: "해외에 모회사를 세우고 국내 법인을 그 자회사로 만드는 구조 변경.", chapter: "exit" },
+  { term: "지정감사", alias: "", category: "상장", text: "증권선물위원회가 감사인을 정해 주는 것. 상장하려는 회사 등이 대상.", chapter: "ipo", source: ["외부감사법 시행령 제14조", L("주식회사등의외부감사에관한법률시행령", "제14조")] },
+  { term: "기술성장기업", alias: "기술특례", category: "상장", text: "이익이 없어도 기술평가나 상장주선인 추천으로 코스닥에 상장하는 기업 유형.", chapter: "ipo", source: ["한국거래소 코스닥 상장요건", "https://listing.krx.co.kr/contents/LST/04/04020100/LST04020100.jsp"] },
+  { term: "상장주선인", alias: "주관사", category: "상장", text: "상장 절차를 맡아 준비하고 거래소에 추천하는 증권회사.", chapter: "ipo", source: ["한국거래소 코스닥 상장요건", "https://listing.krx.co.kr/contents/LST/04/04020100/LST04020100.jsp"] },
+
+  // 국제
+  { term: "해외직접투자", alias: "", category: "국제", text: "외국 법인 지분을 10% 이상 취득하는 것 등. 송금 전 외국환은행에 신고한다.", chapter: "overseas", source: ["외국환거래법 시행령 제8조", L("외국환거래법시행령", "제8조")] },
+  { term: "해외금융계좌 신고", alias: "", category: "국제", text: "해외 계좌 잔액 합계가 매월 말일 중 하루라도 5억원을 넘으면 다음 해 6월에 하는 신고.", chapter: "overseas", source: ["국제조세조정에 관한 법률 제53조", L("국제조세조정에관한법률", "제53조")] },
+  { term: "이전가격", alias: "", category: "국제", text: "특수관계에 있는 국내외 회사 사이의 거래 가격. 정상가격과 다르면 세무서가 소득을 다시 계산한다.", chapter: "overseas" },
+  { term: "외국납부세액공제", alias: "", category: "국제", text: "해외에서 낸 세금을 한국 법인세에서 빼 주는 제도. 한도 초과분은 10년간 이월.", chapter: "overseas", source: ["법인세법 제57조", L("법인세법", "제57조")] },
+  { term: "조세조약", alias: "", category: "국제", text: "두 나라가 이중과세를 막으려고 맺은 조약. 원천징수 세율을 낮추는 제한세율이 있다.", chapter: "overseas" },
+
+  // 승계, 정리
+  { term: "증여재산공제", alias: "", category: "승계", text: "증여받는 사람별로 10년간 일정 금액을 빼 주는 공제. 성년 자녀는 5,000만원.", chapter: "succession", source: ["상속세 및 증여세법 제53조", L("상속세및증여세법", "제53조")] },
+  { term: "창업자금 증여세 과세특례", alias: "", category: "승계", text: "60세 이상 부모에게 받은 창업 자금을 5억원 공제 후 10%로 과세하는 특례.", chapter: "succession", source: ["조세특례제한법 제30조의5", L("조세특례제한법", "제30조의5")] },
+  { term: "가업상속공제", alias: "", category: "승계", text: "10년 이상 경영한 가업을 상속할 때 상속재산에서 일정 금액을 빼 주는 제도.", chapter: "succession", source: ["상속세 및 증여세법 제18조의2", L("상속세및증여세법", "제18조의2")] },
+  { term: "해산", alias: "", category: "정리", text: "회사를 없애기로 하고 청산 절차에 들어가는 것.", chapter: "closing", source: ["상법 제518조", L("상법", "제518조")] },
+  { term: "청산", alias: "", category: "정리", text: "해산한 회사의 재산을 정리해 빚을 갚고 남은 것을 주주에게 나누는 절차.", chapter: "closing", source: ["상법 제535조", L("상법", "제535조")] },
+  { term: "청산소득", alias: "", category: "정리", text: "청산 때 잔여재산가액이 자기자본을 넘는 금액. 법인세 대상.", chapter: "closing", source: ["법인세법 제79조", L("법인세법", "제79조")] },
+  { term: "휴면회사", alias: "휴면법인", category: "정리", text: "마지막 등기 후 5년이 지난 회사. 공고를 거쳐 해산한 것으로 본다.", chapter: "closing", source: ["상법 제520조의2", L("상법", "제520조의2")] }
 ];
