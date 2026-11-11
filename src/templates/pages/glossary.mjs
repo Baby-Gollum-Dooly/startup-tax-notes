@@ -1,0 +1,32 @@
+/* 용어사전. 전체 목록을 정적으로 출력하고 검색과 분류 필터만 브라우저에서 처리 */
+import { esc, chapterUrl } from '../../lib/html.mjs';
+
+export function glossary(site) {
+  const byId = new Map(site.chapters.map((c) => [c.id, c]));
+  const categories = [...new Set(site.glossary.map((g) => g.category))];
+  const terms = [...site.glossary].sort((a, b) => a.term.localeCompare(b.term, 'ko'));
+
+  const filters = ['전체', ...categories].map((c, i) =>
+    `<button type="button" data-category="${esc(c)}"${i === 0 ? ' class="active" aria-pressed="true"' : ' aria-pressed="false"'}>${esc(c)}</button>`
+  ).join('');
+
+  const rows = terms.map((g) => {
+    const ch = byId.get(g.chapter);
+    const search = [g.term, g.alias, g.text].join(' ').toLowerCase();
+    return `<div data-category="${esc(g.category)}" data-search="${esc(search)}"><dt>${esc(g.term)}` +
+      (g.alias ? `<small>${esc(g.alias)}</small>` : '') + `</dt><dd>${esc(g.text)}` +
+      (ch ? ` <a href="${chapterUrl(ch.id)}">${ch.no}장에서 보기</a>` : '') + '</dd></div>';
+  }).join('\n');
+
+  return `<div class="page">
+<h1>용어</h1>
+<p class="lead">세무사와 대화하거나 홈택스 화면을 볼 때 자주 나오는 말을 모았습니다.</p>
+<input type="search" class="gloss-search" id="g-q" placeholder="용어나 설명으로 검색" aria-label="용어 검색">
+<div class="gloss-filter" id="g-cat">${filters}</div>
+<p class="muted" id="g-count">${terms.length}개</p>
+<dl class="gloss" id="g-list">
+${rows}
+</dl>
+<p class="muted" id="g-empty" hidden>검색 결과가 없습니다.</p>
+</div>`;
+}
