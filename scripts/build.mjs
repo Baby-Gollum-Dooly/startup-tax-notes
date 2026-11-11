@@ -29,7 +29,7 @@ const DIST = join(ROOT, 'dist');
 const STYLE_ORDER = ['tokens', 'base', 'layout', 'content', 'components', 'pages', 'responsive', 'print'];
 
 /* 브라우저에서 쓰는 모듈. src 안의 상대 경로를 그대로 유지해 복사한다 */
-const CLIENT_FILES = ['client', 'lib/html.mjs', 'lib/schedule.mjs', 'lib/calc.mjs', 'content/schedule.mjs'];
+const CLIENT_FILES = ['client', 'lib/html.mjs', 'lib/schedule.mjs', 'lib/calc.mjs', 'lib/terms.mjs', 'content/schedule.mjs'];
 
 async function loadChapters() {
   const dir = join(SRC, 'content', 'chapters');
@@ -58,6 +58,13 @@ function validate(site) {
     for (const m of c.body.matchAll(/href="\/chapters\/([a-z]+)"/g)) {
       if (!ids.has(m[1])) errors.push(`${c.id}: 없는 챕터 링크 ${m[1]}`);
     }
+    /* 출처 번호 [[n]]은 sources 목록 안에 있어야 하고, 출처는 모두 https 링크여야 한다 */
+    for (const m of c.body.matchAll(/\[\[(\d+)\]\]/g)) {
+      if (Number(m[1]) < 1 || Number(m[1]) > c.sources.length) errors.push(`${c.id}: 없는 출처 번호 [[${m[1]}]]`);
+    }
+    c.sources.forEach((s, i) => {
+      if (!/^https:\/\//.test(s.url)) errors.push(`${c.id}: ${i + 1}번 출처 주소 형식 오류`);
+    });
     const MIDDLE_DOT = String.fromCharCode(0xb7);
     if (c.body.includes(MIDDLE_DOT) || c.title.includes(MIDDLE_DOT)) errors.push(`${c.id}: 가운뎃점 사용`);
   });
@@ -85,7 +92,7 @@ async function build() {
   const pages = [
     {
       file: 'index.html', path: '/', nav: 'home', title: '',
-      description: '법인을 세우고 운영하는 대표가 알아야 할 세무, 회계, 절세, 투자와 상장 관련 세금을 23개 장으로 정리했습니다.',
+      description: `법인을 세우고 운영하는 대표가 알아야 할 세무, 회계, 대출, 지분, 투자 관련 내용을 ${site.chapters.length}개 장으로 정리했습니다. 내용마다 공식 출처를 달았습니다.`,
       content: home(site), script: 'home', data: homeData(site)
     },
     { file: 'calendar.html', path: '/calendar', nav: 'calendar', title: '세무 일정', description: '12월 결산 법인 기준 연간 세무 신고 납부 일정', content: calendar(), script: 'calendar' },
@@ -96,7 +103,7 @@ async function build() {
     ...site.chapters.map((c) => ({
       file: `chapters/${c.id}.html`, path: `/chapters/${c.id}`, chapter: c.id,
       title: `${c.no}. ${c.title}`, description: c.summary,
-      content: chapter(site, c), script: 'chapter', data: chapterData(c)
+      content: chapter(site, c), script: 'chapter', data: chapterData(site, c)
     }))
   ];
 

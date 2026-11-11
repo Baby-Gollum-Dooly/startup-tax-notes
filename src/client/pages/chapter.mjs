@@ -2,6 +2,7 @@
 import { state, save, readPageData } from '../store.mjs';
 import { refreshReadMarks } from '../common.mjs';
 import { esc } from '../../lib/html.mjs';
+import { initTerms } from '../terms.mjs';
 
 const KEYS = ['가', '나', '다', '라', '마'];
 const data = readPageData();
@@ -60,3 +61,6 @@ if (quiz) {
     data.quiz.forEach((_, i) => paintQuestion(i));
   });
 }
+
+/* 본문 용어 설명 */
+initTerms(data.terms || {}, id);

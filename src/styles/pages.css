@@ -102,3 +102,7 @@ dl.gloss dd a { font-size: 13.5px; }
 .check-list input { margin-top: 5px; accent-color: var(--accent); }
 .check-list .sub { display: block; font-size: 13.5px; color: var(--ink-3); }
 .check-list input:checked + span > .t { color: var(--ink-3); text-decoration: line-through; }
+
+.gloss-src { display: block; margin-top: 2px; font-size: 12.5px; color: var(--ink-3); }
+dl.gloss > div:target { background: var(--mark); }
+dl.gloss > div { scroll-margin-top: 72px; }
