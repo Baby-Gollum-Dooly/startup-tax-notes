@@ -1,0 +1,113 @@
+@media (max-width: 1100px) {
+  .home-grid { grid-template-columns: 1fr; gap: 40px; }
+  .tool-body { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 860px) {
+  .menu-toggle { display: inline-block; }
+  .topnav { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .main { min-width: 0; }
+  .sidebar {
+    position: fixed;
+    top: calc(52px + env(safe-area-inset-top, 0px));
+    height: calc(100vh - 52px - env(safe-area-inset-top, 0px));
+    padding-left: env(safe-area-inset-left, 0px);
+    left: 0;
+    width: min(320px, 88vw);
+    z-index: 15;
+    background: var(--bg);
+    transform: translateX(-100%);
+    transition: transform .18s ease-out;
+    border-right: 1px solid var(--rule-strong);
+  }
+  body.nav-open .sidebar { transform: none; }
+  .sidebar .mobile-nav { display: block; }
+  .main { padding-block: 24px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .topbar { gap: 12px; }
+  .brand { overflow: hidden; text-overflow: ellipsis; }
+  .lead { font-size: 16px; }
+  h2 { margin-top: 36px; }
+  .chapter-foot { display: grid; grid-template-columns: 1fr; }
+  .chapter-foot .next { text-align: left; margin-left: 0; }
+  .chapter-foot .btn { justify-self: start; }
+  .progress-line { flex-wrap: wrap; }
+  .progress-line .bar { flex-basis: 100%; }
+  .sidebar li a { padding-block: 10px; }
+  .q-options button { padding-block: 11px; }
+  th, td { padding-right: 10px; }
+  .footer { padding-block: 20px 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1 { font-size: 24px; }
+  dl.gloss > div { grid-template-columns: 1fr; gap: 2px; }
+  .month-block { grid-template-columns: 1fr; gap: 6px; }
+}
+
+
+/* 휴대폰 (375px 기준) */
+.scrim { display: none; }
+@media (max-width: 860px) {
+  .scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 14;
+    background: rgba(20, 22, 18, .35);
+  }
+  body.nav-open .scrim { display: block; }
+  body.nav-open { overflow: hidden; }
+}
+@media (max-width: 560px) {
+  body { font-size: 15.5px; line-height: 1.68; }
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-top: 32px; padding-top: 16px; }
+  h3 { font-size: 16px; }
+  .lead { font-size: 15.5px; margin-bottom: 20px; }
+  .eyebrow { font-size: 12.5px; }
+  ul, ol { padding-left: 20px; }
+  .steps > li { padding-left: 34px; }
+  .formula { padding: 10px 12px; font-size: 14.5px; overflow-wrap: anywhere; }
+  .note, .caution { padding-left: 12px; }
+
+  input[type="text"], input[type="search"], input[type="number"], select { font-size: 16px; }
+
+  .topbar { height: 48px; }
+  .sidebar { top: calc(48px + env(safe-area-inset-top, 0px)); height: calc(100vh - 48px - env(safe-area-inset-top, 0px)); }
+  .brand { font-size: 14.5px; }
+
+  table { font-size: 14px; }
+  th, td { padding: 8px 8px 8px 0; }
+
+  /* 세 칸 이상 글 위주 표는 줄마다 세로로 펼침 */
+  table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; width: 100%; }
+  table.stack thead { display: none; }
+  table.stack caption { display: block; }
+  table.stack tr { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  table.stack tbody tr:first-child { border-top: 1px solid var(--ink); }
+  table.stack td { padding: 2px 0; border: 0; text-align: left; }
+  table.stack td:first-child { font-weight: 600; padding-bottom: 4px; }
+  table.stack td[data-label]:not(:first-child) {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 8px;
+    padding: 3px 0;
+  }
+  table.stack td[data-label]:not(:first-child)::before {
+    content: attr(data-label);
+    font-size: 12.5px;
+    line-height: 1.9;
+    color: var(--ink-3);
+  }
+  table.stack td:empty { display: none; }
+  table.stack tr.total td { border: 0; }
+  table.journal { font-size: 12.5px; }
+  table.journal th, table.journal td { padding-right: 6px; }
+  table.journal td:first-child { white-space: normal; min-width: 64px; }
+
+  .toc a { grid-template-columns: 26px 1fr; }
+  .toc .st { grid-column: 2; grid-row: auto; }
+  .deadline-list li { grid-template-columns: 64px 1fr; }
+  .month-block li { grid-template-columns: 1fr; gap: 0; }
+  .month-block .shift { display: inline; margin-left: 6px; }
+  .check-group h2 { flex-wrap: wrap; gap: 4px 12px; }
+  .cal-controls { gap: 10px 16px; }
+  .chapter-foot a { padding: 6px 0; }
+}

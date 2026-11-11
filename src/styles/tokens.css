@@ -1,0 +1,52 @@
+/* 색상 토큰. 라이트 기본, 다크는 시스템 설정 또는 data-theme */
+:root {
+  --bg: #f6f5f0;
+  --surface: #ffffff;
+  --ink: #1c1d1a;
+  --ink-2: #4a4c45;
+  --ink-3: #7a7c73;
+  --rule: #dcd9cf;
+  --rule-strong: #b9b5a8;
+  --accent: #1e5a47;
+  --accent-soft: #e5ede8;
+  --on-accent: #ffffff;
+  --warn: #a8321f;
+  --warn-soft: #f6e7e2;
+  --mark: #fbf0c4;
+  --sidebar-w: 268px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171816;
+    --surface: #1f201d;
+    --ink: #e7e6e0;
+    --ink-2: #b9b8b0;
+    --ink-3: #8a8a82;
+    --rule: #34352f;
+    --rule-strong: #4d4e47;
+    --accent: #7fbfa6;
+    --accent-soft: #233029;
+    --on-accent: #10201a;
+    --warn: #e58a75;
+    --warn-soft: #3a2621;
+    --mark: #4a4120;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+    --bg: #171816;
+    --surface: #1f201d;
+    --ink: #e7e6e0;
+    --ink-2: #b9b8b0;
+    --ink-3: #8a8a82;
+    --rule: #34352f;
+    --rule-strong: #4d4e47;
+    --accent: #7fbfa6;
+    --accent-soft: #233029;
+    --on-accent: #10201a;
+    --warn: #e58a75;
+    --warn-soft: #3a2621;
+    --mark: #4a4120;
+    color-scheme: dark;
+}

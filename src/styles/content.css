@@ -1,0 +1,85 @@
+/* 표 */
+.table-wrap { overflow-x: auto; margin: 0 0 20px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+caption { text-align: left; font-size: 13px; color: var(--ink-3); padding-bottom: 6px; }
+th, td {
+  padding: 9px 12px 9px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+}
+thead th {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--ink);
+}
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; }
+tr.total td { border-top: 1px solid var(--ink); border-bottom: 3px double var(--ink); font-weight: 600; }
+table.journal td:first-child { color: var(--ink-3); white-space: nowrap; }
+
+/* 강조 블록: 카드 대신 왼쪽 선 */
+.note, .caution {
+  margin: 20px 0;
+  padding: 2px 0 2px 16px;
+  border-left: 3px solid var(--accent);
+}
+.note p:last-child, .caution p:last-child, .note ul:last-child, .caution ul:last-child { margin-bottom: 0; }
+.caution { border-left-color: var(--warn); }
+.note-title, .caution-title { display: block; font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.note-title { color: var(--accent); }
+.caution-title { color: var(--warn); }
+
+.formula {
+  margin: 16px 0 20px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.steps { counter-reset: step; list-style: none; padding: 0; }
+.steps > li {
+  position: relative;
+  padding: 0 0 14px 40px;
+  margin: 0;
+}
+.steps > li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.steps > li > b { display: block; }
+
+.sources { margin-top: 40px; font-size: 14px; color: var(--ink-2); }
+.sources h2 { font-size: 15px; }
+
+/* 챕터 하단 */
+.chapter-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ink);
+  font-size: 14px;
+}
+.chapter-foot a { text-decoration: none; }
+.chapter-foot .next { text-align: right; margin-left: auto; }
+.chapter-foot small { display: block; color: var(--ink-3); }

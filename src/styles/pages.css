@@ -1,0 +1,104 @@
+/* 학습 현황 */
+.progress-line { display: flex; align-items: center; gap: 12px; margin: 0 0 28px; font-size: 14px; color: var(--ink-2); }
+.bar { flex: 0 0 180px; height: 6px; background: var(--rule); }
+.bar > span { display: block; height: 100%; background: var(--accent); }
+
+.home-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+.home-grid h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.toc { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ink); }
+.toc li { margin: 0; border-bottom: 1px solid var(--rule); }
+.toc a {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 4px;
+  padding: 12px 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.toc a:hover .t { text-decoration: underline; }
+.toc .no { color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.toc .t { font-weight: 600; }
+.toc .s { grid-column: 2 / 3; font-size: 14px; color: var(--ink-2); }
+.toc .st { grid-row: 1; grid-column: 3; font-size: 13px; color: var(--ink-3); white-space: nowrap; }
+.toc .st.ok { color: var(--accent); }
+
+.side-panel h2 { margin-top: 0; padding-top: 0; border-top: 0; font-size: 15px; }
+.side-panel section + section { margin-top: 32px; }
+.deadline-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ink); }
+.deadline-list li {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.deadline-list .d { font-variant-numeric: tabular-nums; font-weight: 600; }
+.deadline-list .left { display: block; font-size: 12px; font-weight: 400; color: var(--ink-3); }
+.deadline-list .left.soon { color: var(--warn); }
+
+/* 일정 */
+.cal-controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 0 0 20px; }
+.cal-controls label { display: flex; gap: 6px; align-items: center; }
+.month-block { display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+.month-block:first-of-type { border-top: 1px solid var(--ink); }
+.month-block > h3 { margin: 0; font-size: 15px; }
+.month-block.now > h3 { color: var(--accent); }
+.month-block ul { list-style: none; padding: 0; margin: 0; }
+.month-block li { display: grid; grid-template-columns: 92px 1fr; gap: 8px; margin: 0 0 6px; font-size: 14.5px; line-height: 1.5; }
+.month-block li.past { color: var(--ink-3); }
+.month-block .d { font-variant-numeric: tabular-nums; }
+.month-block .shift { font-size: 12px; color: var(--ink-3); display: block; }
+.tag { font-size: 12px; color: var(--ink-3); margin-left: 6px; }
+
+/* 계산기 */
+.tool { padding: 8px 0 32px; border-top: 1px solid var(--ink); margin-top: 40px; }
+.tool:first-of-type { margin-top: 24px; }
+.tool h2 { margin-top: 12px; padding-top: 0; border-top: 0; }
+.tool-body { display: grid; grid-template-columns: minmax(240px, 300px) minmax(0, 1fr); gap: 40px; align-items: start; }
+.field { display: grid; gap: 4px; margin-bottom: 14px; }
+.field input, .field select { width: 100%; }
+.field .hint { font-size: 12.5px; color: var(--ink-3); }
+.radio-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.radio-row label { display: flex; gap: 6px; align-items: center; color: var(--ink); }
+
+/* 용어 */
+.gloss-search { width: 100%; max-width: 420px; margin-bottom: 8px; }
+.gloss-filter { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 8px 0 24px; font-size: 14px; }
+.gloss-filter button {
+  font: inherit; font-size: 14px; background: none; border: 0; padding: 2px 0; color: var(--ink-3); cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+.gloss-filter button.active { color: var(--ink); border-bottom-color: var(--ink); }
+dl.gloss { margin: 0; border-top: 1px solid var(--ink); }
+dl.gloss > div { display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+dl.gloss dt { font-weight: 600; }
+dl.gloss dt small { display: block; font-weight: 400; font-size: 12.5px; color: var(--ink-3); }
+dl.gloss dd { margin: 0; font-size: 15px; }
+dl.gloss dd a { font-size: 13.5px; }
+
+/* 체크리스트 */
+.check-group { margin-bottom: 32px; }
+.check-group h2 { display: flex; justify-content: space-between; align-items: baseline; }
+.check-group h2 span { font-size: 13px; font-weight: 400; color: var(--ink-3); }
+.check-list { list-style: none; padding: 0; margin: 0; }
+.check-list li { margin: 0; border-bottom: 1px solid var(--rule); }
+.check-list label {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  padding: 10px 0;
+  color: var(--ink);
+  font-size: 15px;
+  cursor: pointer;
+}
+.check-list input { margin-top: 5px; accent-color: var(--accent); }
+.check-list .sub { display: block; font-size: 13.5px; color: var(--ink-3); }
+.check-list input:checked + span > .t { color: var(--ink-3); text-decoration: line-through; }

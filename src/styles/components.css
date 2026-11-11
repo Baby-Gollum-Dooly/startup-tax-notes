@@ -1,0 +1,70 @@
+/* 버튼, 입력 */
+.btn {
+  display: inline-block;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover { border-color: var(--ink-2); }
+.btn.primary { color: var(--on-accent); background: var(--accent); border-color: var(--accent); }
+.btn.text { border: 0; background: none; padding: 7px 4px; color: var(--ink-3); }
+.btn.text:hover { color: var(--ink); }
+
+label, .field > span:first-child { font-size: 14px; color: var(--ink-2); }
+input[type="text"], input[type="search"], input[type="number"], select {
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  padding: 7px 10px;
+}
+input:focus, select:focus, .btn:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* 퀴즈 */
+.quiz { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.quiz h2 { margin-top: 0; padding-top: 0; border-top: 0; }
+.q { margin: 0 0 28px; }
+.q-text { font-weight: 600; margin-bottom: 8px; }
+.q-options { list-style: none; padding: 0; margin: 0; }
+.q-options li { margin: 0; }
+.q-options button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  padding: 8px 4px 8px 28px;
+  position: relative;
+  cursor: pointer;
+}
+.q-options button::before {
+  content: attr(data-key);
+  position: absolute;
+  left: 4px;
+  color: var(--ink-3);
+  font-size: 13px;
+  top: 9px;
+}
+.q-options button:hover:not(:disabled) { background: var(--surface); }
+.q-options button:disabled { cursor: default; }
+.q-options button.right { background: var(--accent-soft); }
+.q-options button.wrong { background: var(--warn-soft); text-decoration: line-through; text-decoration-color: var(--warn); }
+.q-explain { margin-top: 8px; font-size: 14.5px; color: var(--ink-2); }
+.q-explain b { color: var(--accent); }
+.q-explain b.x { color: var(--warn); }
